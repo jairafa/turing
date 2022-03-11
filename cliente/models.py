@@ -53,7 +53,7 @@ class cliente(models.Model):
     country = models.ForeignKey(
         territorial, models.DO_NOTHING, related_name="pais", blank=False, null=False
     )
-    departamen = models.ForeignKey(
+    departament = models.ForeignKey(
         territorial,
         models.DO_NOTHING,
         related_name="departamento",
