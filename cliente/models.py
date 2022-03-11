@@ -64,7 +64,7 @@ class cliente(models.Model):
         territorial, models.DO_NOTHING, related_name="ciudad", blank=False, null=False
     )
     category = models.ForeignKey(category, models.DO_NOTHING, blank=False, null=False)
-    user_created = models.ForeignKey(User, models.DO_NOTHING)
+    user_created = models.ForeignKey(User, models.DO_NOTHING, default=1)
     active = (
         (
             1,

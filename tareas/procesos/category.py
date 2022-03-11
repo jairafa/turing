@@ -11,7 +11,7 @@ def migrate_category(s_file_path_name: str) -> bool:
     regError: int = 0
     regBlancos: int = 0
     mensaje: str = "Archivo " + s_file_path_name + " procesado."
-    with open(s_file_path_name, "r") as csvfile:
+    with open(s_file_path_name, "r", encoding="utf-8") as csvfile:
         reader = csv.reader(csvfile, delimiter=";")
         try:
             for row in reader:

@@ -3,6 +3,7 @@
 from django.conf import settings
 from django.db import migrations, models
 from tareas.procesos.category import migrate_category
+from tareas.procesos.territorial import migrate_territorial
 import django.db.models.deletion
 
 
@@ -20,6 +21,13 @@ class Migration(migrations.Migration):
     def undo_init_category(apps, schema_editor):
         category = apps.get_model("cliente", "category")
         category.objects.all().delete()
+
+    def insert_init_territorial(apps, schema_editor):
+        migrate_territorial("cliente/migrations/municipios.csv")
+
+    def undo_init_territorial(apps, schema_editor):
+        territorial = apps.get_model("cliente", "territorial")
+        territorial.objects.all().delete()
 
     operations = [
         migrations.CreateModel(
@@ -153,4 +161,5 @@ class Migration(migrations.Migration):
             },
         ),
         migrations.RunPython(insert_init_category, reverse_code=undo_init_category),
+        migrations.RunPython(insert_init_territorial, reverse_code=undo_init_territorial),
     ]
