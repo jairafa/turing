@@ -4,12 +4,8 @@ from django.contrib.auth.models import User
 
 class category(models.Model):
     name = models.CharField(max_length=50)
-    created_at = models.DateTimeField(
-        "Fecha de creación", auto_now_add=True, auto_now=False
-    )
-    updated_at = models.DateTimeField(
-        "Fecha de actualización", auto_now_add=False, auto_now=True
-    )
+    created_at = models.DateTimeField("Fecha de creación", auto_now_add=True, auto_now=False)
+    updated_at = models.DateTimeField("Fecha de actualización", auto_now_add=False, auto_now=True)
 
     class Meta:
         ordering = ["name"]
@@ -40,12 +36,8 @@ class territorial(models.Model):
     territorial_type = models.CharField(
         "Tipo Territorio", max_length=12, choices=territorial_list, default="city"
     )
-    created_at = models.DateTimeField(
-        "Fecha de creación", auto_now_add=True, auto_now=False
-    )
-    updated_at = models.DateTimeField(
-        "Fecha de actualización", auto_now_add=False, auto_now=True
-    )
+    created_at = models.DateTimeField("Fecha de creación", auto_now_add=True, auto_now=False)
+    updated_at = models.DateTimeField("Fecha de actualización", auto_now_add=False, auto_now=True)
 
     class Meta:
         ordering = ["name"]
@@ -83,15 +75,9 @@ class cliente(models.Model):
             "inactivo",
         ),
     )
-    is_active = models.PositiveSmallIntegerField(
-        max_length=1, choices=active, default=1
-    )
-    created_at = models.DateTimeField(
-        "Fecha de creación", auto_now_add=True, auto_now=False
-    )
-    updated_at = models.DateTimeField(
-        "Fecha de actualización", auto_now_add=False, auto_now=True
-    )
+    is_active = models.PositiveSmallIntegerField(choices=active, default=1)
+    created_at = models.DateTimeField("Fecha de creación", auto_now_add=True, auto_now=False)
+    updated_at = models.DateTimeField("Fecha de actualización", auto_now_add=False, auto_now=True)
 
     class Meta:
         ordering = ["name"]
