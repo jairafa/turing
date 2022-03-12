@@ -1,0 +1,273 @@
+{% extends 'base/base.html' %}
+{% load static%}
+
+{% block title %}
+{{title}}
+{% endblock %}
+
+
+{% block content %}
+
+{% block h %}
+ <style type="text/css">
+    .form-group>div>input {
+      box-sizing: border-box;
+      width: 100%;
+      /* box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset; */
+      width: 15em;
+      height: 2.2em;
+      border-radius: 8px;
+      border: 1px solid #2087c9;
+      padding: 5px;
+      outline: none;
+    }
+    .form-group>div>input:focus {
+      box-shadow: 0 0 5px #4fbeda;
+      padding: 3%;
+      border: 1px solid #2d9ec1;
+    }
+    @media screen and (max-width: 1180px) {
+       .select2-container--default .select2-selection--single {
+            width: 11em !important;
+        }
+        .form-group>div>input {
+              width: 11em;
+        }
+    }
+    /* Estilos Textarea */
+  textarea {
+    resize: none;
+    width: 100%;
+    height: 9em;
+    border-radius: 1em;
+    background-color: #73c9ec2b !important;
+    padding: 2em;
+    outline: none;
+    border: 1px solid #1bb1dc;
+    box-shadow: 0 3px 0px 0 rgba(65, 62, 102, 0.08);
+    transition: all .3s ease-in-out;
+    position: relative;
+  }
+  textarea:after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 0%;
+    height: 5px;
+    background-color: #1bb1dc;
+    transition: 0.5s;
+  }
+  textarea:hover {
+    -webkit-transform: scale(1.05);
+    transform: scale(1.05);
+    /* box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75); */
+    box-shadow: -25px 20px 12px -11px rgba(191,191,191,1);
+  }
+
+  textarea:hover:after {
+    width: 100%;
+  }
+/* Fin Estilos Textarea */
+    .select2-container--default .select2-selection--single {
+       width: auto;
+      max-width: none;
+      min-width: auto;
+    }
+    .font-Tamaño {
+        font-size: 1.4em;
+        color: #4d5e86;
+    }
+    .select{
+      box-sizing: border-box;
+      width: 100%;
+      width: 15em;
+      height: 2.2em;
+      border-radius: 8px;
+      border: 1px solid #2087c9;
+      padding: 5px;
+      outline: none;
+    }
+    .select:focus {
+      box-shadow: 0 0 5px #4fbeda;
+      padding: 3%;
+      border: 1px solid #2d9ec1;
+    }
+    select{
+        width: 100%;
+        height: 100%;
+        margin: 0;
+        padding: 0px 0 0 2.3em;
+        cursor: pointer;
+        font-size: 1vw;
+        border: none;
+    }
+    .div_li_ul_a{
+      float: left;
+
+    }
+    .i_icono{
+      color: #fff;
+      font-size: 2.5em;
+
+    }
+
+    ul{
+      list-style:none
+    }
+    .div_texto_sub {
+    margin: 0.7em 3em 0em 0em;
+    width: 100%;
+}
+</style>
+<div class="div_container_principal">
+<br>
+<div class="container d-flex justify-content-center titulo-BuscadorProcesos font-weight-bold">
+{{title}}</div> <br><br>
+{% endblock %}
+
+  <div class="row justify-content-center" >
+    <div class = "col-11">
+      <div class="card">
+        <div class="card-body">
+
+{% if error %}
+    <p style="color: red;">
+      Debe seleccionar algun valor
+    </p>
+{% endif %}
+
+			 <!--<form method="POST" novalidate data-despachos-url="{ url 'radicar:ajax_load_despachos' }" id="buscar_proceso_id" target="resultado_busqueda">-->
+        <form method="POST" novalidate>
+        {% csrf_token %}
+        <div class="container">
+          <div class="form-group row d-flex justify-content-center">
+              <label class="col-xl-2 col-lg-2 col-md-4 col-sm-8 font-Tamaño" for="example-search-input">
+                  {{form.cliente_id.label}}
+              </label>
+              <div class="col-xl-3 col-lg-3 col-md-6 col-sm-8 mt-1">
+                  {{form.cliente_id}}
+              </div>
+
+              <label class="col-xl-2 col-lg-2 col-md-4 col-sm-8 font-Tamaño" for="example-search-input">
+                  {{form.name.label}}
+              </label>
+              <div class="col-xl-3 col-lg-3 col-md-6 col-sm-8 mt-1">
+                  {{form.name}}
+              </div>
+          </div>
+        </div>
+        <hr>
+        <div class="container">
+          <div class="form-group row d-flex justify-content-center">
+              <label class="col-xl-2 col-lg-2 col-md-4 col-sm-8 font-Tamaño" for="example-search-input">
+                  {{form.city.label}}
+              </label>
+              <div class="col-xl-3 col-lg-3 col-md-6 col-sm-8 mt-1">
+                {{form.city}}
+              </div>
+
+              <label class="col-xl-2 col-lg-2 col-md-4 col-sm-8 font-Tamaño" for="example-search-input">
+                  {{form.departament.label}}
+              </label>
+              <div class="col-xl-3 col-lg-3 col-md-6 col-sm-8 mt-1">
+                {{form.departament}}
+              </div>
+          </div>
+        </div>
+         <hr>
+        <div class="container">
+          <div class="form-group row d-flex justify-content-center">
+              <label class="col-xl-2 col-lg-2 col-md-4 col-sm-8 font-Tamaño" for="example-search-input">
+                  {{form.category.label}}
+              </label>
+              <div class="col-xl-3 col-lg-3 col-md-6 col-sm-8 mt-1">
+                  {{form.category}}
+              </div>
+          </div>
+        </div>
+         <hr>
+
+			 	<div class="row d-flex justify-content-center">
+       <a href="javascript:history.go(-1)" class="btn btn-primary btnTimer">
+          <ul style="margin: 0;float: left;color: #fff;width:auto;max-width:auto;padding-inline-start: 0px;padding-right: 1em;">
+            <li class="nav-item active">
+              <div class="div_li_ul_a">
+                <i class="fas fa-undo-alt" class="i_icono"></i>
+              </div>
+              <div class="div_texto_sub">
+                Volver
+              </div>
+            </li>
+          </ul>
+        </a>
+          &nbsp;&nbsp;
+        <button type="submit" class="btn btn-success mr-3">
+          <ul style="margin: 0;float: left;color: #fff;width:auto;max-width:auto;padding-inline-start: 0px;padding-right: 1em;">
+            <li class="nav-item active">
+              <div class="div_li_ul_a">
+                <i class="fas fa-search" class="i_icono"></i>
+              </div>
+              <div class="div_texto_sub">
+                {{title}}
+              </div>
+            </li>
+          </ul>
+        </a><br><br>
+        </button>
+			 </div>
+			 </form>
+       <br><br>
+
+
+        </div>
+      </div>
+    </div>
+  </div>
+  <iframe  src="" name="resultado_busqueda" id="resultado_busqueda" frameborder="0" scrolling="yes"></iframe>
+  </div>
+  <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+  <script>
+    $("#id_localidad").change(function () {
+      //alert('Entro al script')
+      var url = $("#buscar_proceso_id").attr("data-despachos-url");  // get the url of the `load_cities` view
+      //alert('url' + url)
+      var localidadId = $(this).val();  // get the selected country ID from the HTML input
+      //alert('localidadId ' + localidadId + ' url ' + url)
+
+      $.ajax({
+          url:url,
+          data: {
+            'localidad':localidadId
+          },
+          success: function (data) {
+            $("#id_despacho").html(data);
+          },
+          error : function(message) {
+              console.log(message);
+          }
+      });
+
+      return false;
+
+    });
+     $("form").submit(function(event){
+        //$(".gif_cargando").show();
+        //$(".div_container_principal").hide();
+        //event.preventDefault();
+    });
+
+    //Fundcionalidad para solicitar 2
+
+
+    $(function(){
+      toSelect2($('#id_city'),"Seleccione una Ciudad")
+      toSelect2($('#id_departament'),"Seleccione un Departamento")
+      toSelect2($('#id_category'),"Seleccione una Categoria")
+    });
+
+
+
+  </script>
+
+{% endblock %}

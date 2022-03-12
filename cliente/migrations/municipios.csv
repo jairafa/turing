@@ -2,7 +2,7 @@ id,name,territorial_type,parent_id
 1,Colombia,P,
 2,Cundinamarca,D,1
 3,Antioquia,D,1
-4,Bogotá,D,1
+4,Bogotá DC,D,1
 5,Bogotá,C,4
 6,Funza,C,2
 7,Faca,C,2

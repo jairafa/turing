@@ -1,0 +1,298 @@
+{% extends 'base/base.html' %}
+
+
+{% block content %}
+
+
+<br><br>
+<style type="text/css">
+  .div_icono{
+        height: 3em;
+    width: 3em;
+    background-color: #bbb;
+    border-radius: 50%;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto;
+    font-size: 3em;
+    color: #c6d6f1
+  }
+  <style type="text/css">
+
+  #menu{
+    background-color: #19294e;
+  }
+
+  .div_li_ul_a{
+    float: left;
+    margin: 0em 0em 0em 1em;
+  }
+  .i_icono{
+    color: #fff;
+    font-size: 2.5em;
+
+  }
+  .div_texto_sub{
+    margin: 1em;
+    width: 100%;
+  }
+  .dropdown-menu {
+    background-color: transparent;
+    border-radius: 0.25rem;
+    width: auto;
+    position: relative;
+    top: 0;
+  }
+
+</style>
+
+</style>
+  <div id="contenedor_principal" style="width: 100%;">
+    <div class="contenedor_gris">
+      <div class="jumbotron jumbotron-fluid rounded">
+        <div class="container" style="    max-width: 100%;">
+          <h1 class="display-4 text-center">
+            ¡Bienvenidos!
+          </h1>
+          <div class="container d-flex justify-content-center" style="    max-width: 100%;">
+            <ul class="flex-container">
+
+
+                <li class="item" id="item4">
+                  <a class="nav-link btnTimer" href="{% url 'cliente:client_filter' %}">
+                    <div class=" padding_blocks">
+                      <p class="texto-iconos text-center">  Clientes  </p><br><br>
+                      <div class="div_icono">
+                        <center>
+                        <i class="fas fa-search" class="i_icono"></i>
+                        </center>
+                      </div>
+                    </div>
+                  </a>
+                </li>
+
+              {% if user.profile.getOpciones %}
+                  {% for opcion in user.profile.getOpciones %}
+                      {% if opcion.tipo_opcion == 'MENU' or opcion.tipo_opcion == 'FILTRO' %}
+                          <li class="item" id="item4">
+                            <a class="nav-link btnTimer" href="{% url opcion.ruta %}">
+                              <div class=" padding_blocks">
+                                <p class="texto-iconos text-center">  {{opcion.titulo}}  </p><br><br>
+                                <div class="div_icono">
+                                  <center>
+                                  <i class="{{opcion.icono}}" class="i_icono"></i>
+                                  </center>
+                                </div>
+                              </div>
+                            </a>
+                          </li>
+                      {% endif %}
+                      {% if opcion.tipo_opcion == 'MENU-PADRE' %}
+                        <li class="item" id="item4">
+                          <div id="desplegar_{{opcion.id}}" onclick="desplegar('{{opcion.id}}');" style="cursor: pointer;">
+                              <div class=" padding_blocks">
+                                <p class="texto-iconos text-center">{{opcion.titulo}}</p><br>
+                                <div class="div_icono">
+                                  <center>
+                                  <i class="{{opcion.icono}}" class="i_icono" ></i>
+                                  </center>
+                                </div>
+                              </div>
+                            </div>
+                        </li>
+                        <div class="container d-flex justify-content-center" style="max-width: 100%;">
+                          <ul class="flex-container" style="margin-top: -50px;">
+                           <!--<li class="nav-item dropdown">-->
+                              <div class=" justify-content-center dropdown-menu dropdown-menu_{{opcion.id}}" style="max-width: 100%;">
+
+                                 <ul class="flex-container">
+                                          {% for opcionHija in opcion.getOpcionesHijas %}
+                                  <li class="item" id="item4">
+                                    <a class="dropdown-item btnTimer" href="{% url opcionHija.ruta %}">
+                                      <div class=" padding_blocks">
+                                        <p class="texto-iconos text-center">{{opcionHija.titulo}}</p><br>
+                                        <div class="div_icono">
+                                          <center><i class="{{opcionHija.icono}}" class="i_icono" ></i></center>
+                                        </div>
+                                      </div>
+                                    </a>
+                                  </li>
+                                          {% endfor %}
+
+                                </ul>
+                              </div>
+                            </li>
+                          </ul>
+                        </div>
+
+
+
+                      {% endif %}
+                  {% endfor %}
+                  {% if user.profile.puedeCrearSolicitud %}
+                    <li class="item" id="item4">
+                      <a class="dropdown-item btnTimer" href="{% url 'proceso:filtro' %}">
+                          <div class=" padding_blocks">
+                            <p class="texto-iconos text-center">Radicación de Documentos<br> Procesos en Vigilancia</p><br>
+                            <div class="div_icono">
+                              <center>
+                              <i class="fas fa-balance-scale" class="i_icono" ></i>
+                              </center>
+                            </div>
+                          </div>
+                        </a>
+                    </li>
+                    <li class="item" id="item4">
+                      <div id="desplegar-1000" style="cursor: pointer;">
+                          <div class=" padding_blocks">
+                            <p class="texto-iconos text-center">Radicación de Documentos <br> Procesos sin Vigilancia</p><br>
+                            <div class="div_icono">
+                              <center>
+                              <i class="fas fa-balance-scale" class="i_icono" ></i>
+                              </center>
+                            </div>
+                          </div>
+                        </div>
+                    </li>
+                  {% endif %}
+              {% else %}
+              <!--
+                  <table class="table table-striped text-center">
+                        <thead>
+                            <tr>
+                                <th scope="col" colspan="7">
+                                    No hay opciones
+                                </th>
+                            </tr>
+                        </thead>
+                  <table>
+                  -->
+              {% endif %}  <!-- fin if user.profile.getOpciones-->
+
+              {% if user.profile.isDependiente %}
+                 <li class="item" id="item4">
+                  <a class="nav-link btnTimer" href="#">
+                  <!--<a class="nav-link btnTimer" href="{ url 'radicar:listarRadicadosPorDep' }">-->
+                    <div class=" padding_blocks">
+                      <p class="texto-iconos text-center">Solicitudes Pendientes</p>
+                      <div class="div_icono">
+                        <center>
+                        <i class="fas fa-address-card"   class="i_icono" ></i>
+                        </center>
+                      </div>
+                    </div>
+                  </a>
+                </li>
+              {% endif %}
+        </ul>
+      </div>
+      {% comment %}
+      {% if not user.profile.isCliente %}
+      {% endcomment %}
+      <div class="container d-flex justify-content-center" style="    max-width: 100%;">
+            <ul class="flex-container" style="margin-top: -50px;">
+              <!-- puedeCrearSolicitud {{ user.profile.puedeCrearSolicitud }} -->
+              {% if user.profile.puedeCrearSolicitud %}
+                <li class="nav-item dropdown">
+                   <!-- <a class="nav-link active dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> -->
+                    <!-- <div class="dropdown-menu" > -->
+                    <div class=" justify-content-center dropdown-menu dropdown-menu-1000" style="max-width: 100%;">
+                      <ul class="flex-container">
+                        <li class="item" id="item4">
+                          {% if user.profile.isCliente or user.profile.isDefensa %}
+                           <a class="dropdown-item btnTimer" href="#">
+                           <!--<a class="dropdown-item btnTimer" href="{ url 'radicar:Solicitar1CliEmail' 0 }">-->
+                              <div class=" padding_blocks">
+                                <p class="texto-iconos text-center"><span class="badge badge-success">Radicación Digital</span></p><br>
+                                <div class="div_icono">
+                                  <center>
+                                  <i class="fas fa-file-pdf" class="i_icono"></i>
+                                  </center>
+                                </div>
+                              </div>
+                            </a>
+                        </li>
+                        <li class="item" id="item4">
+                          <a class="dropdown-item btnTimer" href="#">
+                          <!--<a class="dropdown-item btnTimer" href="{ url 'radicar:Solicitar1CliFisico' 0 'crear' }">-->
+                                <div class=" padding_blocks">
+                                  <p class="texto-iconos text-center"><span class="badge badge-success">Radicar Físico con No Guía</span></p><br>
+                                  <div class="div_icono">
+                                    <center>
+                                    <i class="fas fa-shipping-fast"  class="i_icono"></i>
+                                    </center>
+                                  </div>
+                                </div>
+                              </a>
+                        </li>
+
+                          {% else %} <!-- / if user.profile.isCliente or user.profile.isDefensa-->
+                          <a class="dropdown-item btnTimer" href="#">
+                          <!--<a class="dropdown-item btnTimer" href="{ url 'radicar:Solicitar1' 0 }">-->
+                              <div class=" padding_blocks">
+                                <p class="texto-iconos text-center">Radicar Procesos <br> que No estan <br> en Vigilancia</p><br>
+                                <div class="div_icono">
+                                  <center>
+                                  <i class="fas fa-balance-scale" class="i_icono" ></i>
+                                  </center>
+                                </div>
+                              </div>
+                            </a>
+                        </li>
+                        <li class="item" id="item4">
+                            <a class="dropdown-item btnTimer" href="#">
+                            <!--<a class="dropdown-item btnTimer" href="{ url 'radicar:Solicitar3' }">-->
+                              <div class=" padding_blocks">
+                                <p class="texto-iconos text-center">Radicar Documentos <br> Sin Retorno</p><br><br>
+                                <div class="div_icono">
+                                  <center>
+                                  <i class="fas fa-balance-scale" class="i_icono" ></i>
+                                  </center>
+                                </div>
+                              </div>
+                            </a>
+                        </li>
+                          {% endif %}  <!-- / if user.profile.isCliente or user.profile.isDefensa-->
+                      </ul>
+        </div>
+
+                {% endif %}   <!--  if user.profile.puedeCrearSolicitud      -->
+      {% comment %}
+        {% endif %}
+      {% endcomment %}
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+{% endblock %}
+{% block extrajs %}
+<script type="text/javascript">
+  var colors = ['#00b3e685','rgb(214, 101, 101)','#ffb399','#ff99c5','#e46edea1','#6e79e4a1','#6ed1e4a1','#6ee4c6a1','#81ef87a1','#b8ef81a1',];
+
+  $('.div_icono').each(function() {
+      $(this).css('background-color', 'rgb(119, 155, 225)');
+  });
+
+
+    $("#desplegar-1000").click(function(event) {
+      $(".dropdown-menu-1000").slideToggle( "slow", function() {});
+    });
+
+//   $("#desplegar-2").click(function(event) {
+//   $(".dropdown-menu-2").slideToggle( "slow", function() {});
+//   // $(".dropdown-menu").slideToogle( "slow", function() {});
+// });
+
+</script>
+<script type="text/javascript">
+  function desplegar(identificador){
+    $(".dropdown-menu_"+identificador).slideToggle( "slow", function() {});
+  }
+</script>
+{% endblock %}

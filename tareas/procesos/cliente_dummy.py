@@ -107,6 +107,14 @@ def get_system_user_id():
         return user_qs.id
 
 
+def get_system_user():
+    """Obtiene el id del usuarios del sistema"""
+    user_qs = User.objects.filter(username__iexact="system_user")
+    if user_qs.exists() and user_qs.count() != 0:
+        user_qs = User.objects.get(username__iexact="system_user")
+        return user_qs
+
+
 def generate_cliente(count: int):
     user_id: int = 0
     user_id = get_system_user_id()

@@ -1,0 +1,295 @@
+{% extends 'base/base.html' %}
+{% load static%}
+
+{% block title %}
+  {{title}}
+{% endblock %}
+
+{% block content %}
+
+{% block h %}
+  <div class="container d-flex justify-content-center titulo-BuscadorProcesos font-weight-bold">
+    {{title}}
+  </div>
+{% endblock %}
+<style>
+  .col-form-label{
+    font-size: 1.4em;
+    color: #4d5e86;
+  }
+  #solicitarForm>div>img {
+    position: absolute;
+    right: 22px;
+    top: 9px;
+  }
+  input[type=file]{
+    display: none;
+  }
+  #nombre_archivo{
+    font-size: 1em;
+    color: #779be1;
+    max-width: 21em;
+    text-align: left;
+    display: inline-block;
+        padding: 3em;
+  }
+  .select2-container--default .select2-selection--single {
+    width: auto;
+    max-width: none;
+    min-width: auto;
+    }
+  input {
+    box-sizing: border-box;
+    width: 100%;
+    /* box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset; */
+    width: 15em;
+    height: 2.2em;
+    border-radius: 8px;
+    border: 1px solid #2087c9;
+    padding: 5px;
+    outline: none;
+  }
+  input:focus {
+    box-shadow: 0 0 5px #4fbeda;
+    padding: 3%;
+    border: 1px solid #2d9ec1;
+  }
+  @media screen and (max-width: 1120px) {
+    .select2-container--default .select2-selection--single {
+        width: 11em !important;
+    }
+    input {
+        width: 11em;
+    }
+  }
+  .form-control {
+    box-sizing: border-box;
+    width: 100%;
+    /* box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset; */
+    width: 15em;
+    height: 2.2em;
+    border-radius: 8px;
+    border: 1px solid #2087c9;
+    padding: 5px;
+    outline: none;
+  }
+  .form-control:focus {
+    box-shadow: 0 0 5px #4fbeda;
+    padding: 3%;
+    border: 1px solid #2d9ec1;
+  }
+  @media screen and (max-width: 1120px) {
+    .select2-container--default .select2-selection--single {
+        width: 11em !important;
+    }
+    .form-control {
+        width: 11em;
+    }
+  }
+  /* Estilos Textarea */
+  textarea {
+    resize: none;
+    width: 100%;
+    height: 11em;
+    border-radius: 1em;
+    background-color: #73c9ec2b !important;
+    padding: 2em;
+    outline: none;
+    border: 1px solid #1bb1dc;
+    box-shadow: 0 3px 0px 0 rgba(65, 62, 102, 0.08);
+    transition: all .3s ease-in-out;
+    position: relative;
+  }
+  textarea:hover {
+    -webkit-transform: scale(1.05);
+    transform: scale(1.05);
+    /* box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75); */
+    box-shadow: -25px 20px 12px -11px rgba(191,191,191,1);
+  }
+  textarea:hover:after {
+    width: 100%;
+  }
+/* Fin Estilos Textarea */
+
+  .img-load-pdf {
+    cursor: pointer;
+    width: 130px;
+    margin-top: 12px;
+  }
+  .div_li_ul_a{
+    float: left;
+  }
+  .i_icono{
+    color: #fff;
+    font-size: 2.8em;
+
+  }
+
+  ul{
+    list-style:none
+  }
+  .div_texto_sub {
+      margin: 0.7em 3em 0em 0em;
+      width: 100%;
+  }
+  .ctn-input {
+    margin-top: 15px;
+  }
+</style>
+
+  <div class="row justify-content-center" >
+    <div class = "col-12">
+      <div class="card">
+        <div class="card-body">
+
+
+{% if form.errors %}
+    <ul class="alert alert-danger">
+    {% for field in form %}
+        {% for error in field.errors %}
+            <li>
+              {% if field != '__all__' %}
+                <strong>{{ field.label }}:</strong>
+              {% endif %}
+              {{ error }}
+            </li>
+        {% endfor %}
+    {% endfor %}
+    </ul>
+{% endif %}
+
+
+ <form method="POST" onsubmit="return checkForm(this);">
+  {% csrf_token %}
+  {% for hidden in form.hidden_fields %}
+    {{ hidden }}
+  {% endfor %}
+
+     <div class="container">
+     {# Include the visible fields #}
+    {% for field in form.visible_fields %}
+      {% if not forloop.counter|divisibleby:2 %}
+        <div class="container ctn-input">
+          <div class="row col-md-12">
+      {% endif %}
+
+            <div id="div_{{ field.auto_id }}" class="col-md-6">
+              <div class="row col-md-12">
+                <div class="col-md-6">
+                  <label class="font-Tamaño" for="formGroupExampleInput">
+                    {{ field.errors }}
+                    {{ field.label_tag }}
+                  </label>
+                </div>
+                <div class="col-md-6">
+                  {{ field }}
+                </div>
+              </div>
+            </div>
+
+
+      {% if forloop.counter|divisibleby:2 %}
+          </div>
+        </div>
+      {% endif %}
+    {% endfor %}
+    </div>
+    <br><hr>
+
+<h4>
+  <div class="container d-flex justify-content-center ">
+    {{tituloDos}}
+  </div>
+</h4>
+
+
+  {% for hidden in formDetalle.hidden_fields %}
+    {{ hidden }}
+  {% endfor %}
+     <div class="container">
+     {# Include the visible fields #}
+    {% for field in formDetalle.visible_fields %}
+      {% if not forloop.counter|divisibleby:2 %}
+        <div class="container ctn-input">
+          <div class="row col-md-12">
+      {% endif %}
+
+            <div id="div_{{ field.auto_id }}" class="col-md-6">
+              <div class="row col-md-12">
+                <div class="col-md-6">
+                  <label class="font-Tamaño" for="formGroupExampleInput">
+                    {{ field.errors }}
+                    {{ field.label_tag }}
+                  </label>
+                </div>
+                <div class="col-md-6">
+                  {{ field }}
+                </div>
+              </div>
+            </div>
+
+
+      {% if forloop.counter|divisibleby:2 %}
+          </div>
+        </div>
+      {% endif %}
+    {% endfor %}
+    </div>
+
+    <br><hr>
+
+   <div class="row d-flex justify-content-center">
+          <a href="javascript:history.go(-1)" class="btn btn-primary btnTimer">
+            <ul style="margin: 0;float: left;color: #fff;width:auto;max-width:auto;padding-inline-start: 0px;padding-right: 1em;">
+              <li class="nav-item active">
+                <div class="div_li_ul_a">
+                  <i class="fas fa-undo-alt" class="i_icono"></i>
+                </div>
+                <div class="div_texto_sub">
+                  Volver
+                </div>
+              </li>
+            </ul>
+          </a>
+          &nbsp;&nbsp;&nbsp;&nbsp;
+          <button class="btn btn-success" type="submit" name="botonSinDoble">
+
+              <ul style="margin: 0;float: left;color: #fff;width:auto;max-width:auto;padding-inline-start: 0px;padding-right: 1em;">
+                  <li class="nav-item active">
+                    <div class="div_li_ul_a">
+                      <i class="fab fa-black-tie" class="i_icono"></i>
+                    </div>
+                    <div class="div_texto_sub">
+                      {{title}}
+                    </div>
+                  </li>
+                </ul>
+              <br><br>
+          </button>
+    </div>
+ </form>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock %}
+
+{% block extrajs %}
+<script type="text/javascript">
+    function checkForm(form){
+      //form.name="botonSinDoble".disabled = true;
+      form.botonSinDoble.disabled = true;
+      return true;
+    }
+</script>
+
+  <script>
+    $(function(){
+      toSelect2($('#id_country'),"Seleccione un País")
+      toSelect2($('#id_departament'),"Seleccione un Departamento")
+      toSelect2($('#id_city'),"Seleccione una Ciudad")
+      toSelect2($('#id_category'),"Seleccione una Categoría")
+    });
+  </script>
+
+{% endblock %}

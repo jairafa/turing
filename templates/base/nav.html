@@ -1,0 +1,65 @@
+{% load static %}
+
+
+<nav class="navbar navbar-expand-md bg-light justify-content-between " style="width: 100%; z-index: 9999;position: fixed;left: 0;">
+	<div class="container-fluid">
+	    <div style="width: 20%">
+    		<button class="navbar-toggler abrir" data-target=".dual-nav" data-toggle="collapse" type="button">
+	            <span>
+	            	<a href="{% url 'index' %}" class="btnTimer">
+	                	<img alt=""  src="{% static 'img/home.png' %}">
+	                </a>
+	            </span>
+	        </button>
+	    </div>
+	    <div class="navbar-collapse collapse dual-nav w-50 order-1 order-md-0">
+	        <ul class="navbar-nav " style="width: 100%">
+	           	<li class="nav-item">
+	           		<p style="text-align: right;" class="mt-1  nav-link textoUsuario" target="iframe_prin">
+		            	{% if user.is_authenticated %}
+		            		{{request.user}}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		  				{% endif %}
+		            </p>
+	           	<li>
+	           	<li class="nav-item">
+	           		<button id="msg-radicacion" type="button" style="outline: none; background: transparent; border: none; cursor: pointer; margin-left: 30px;" class="nav-link btn-litiradicacion">
+	           			<img v-bind:title="message" style="width: 3em; height: auto;" src="{% static 'img/icono radicacion.png' %}">
+	           		</button>
+	           	</li>
+	        </ul>
+	    </div>
+	        <a class="navbar-brand mx-auto btnTimer" href="{% url 'index' %}">
+	            <img alt="" class="ml-3 d-none d-lg-block d-none d-md-block d-lg-none" height="60px" src="{% static 'img/logo1.png' %}">
+	            <img alt="" class="d-block d-xs-block d-md-none" height="50px" src="{% static 'img/logo1.png' %}">
+	        </a>
+       		<!-- Esto solo se va a mostrar en dispositivos moviles -->
+            {% if user.is_authenticated %}
+	            <div class="row">
+	            	<div class="col-8">
+	            		<a class="abrir-cerrar d-block d-xs-block d-md-none btnTimer" href="{% url 'logout' %}">
+	                        <button class="btn btn-outline-primary" type="button" style="background-color: red; color: #fff;    margin: 0.5em;">
+	                           Cerrar Sesión
+	                        </button>
+	                    </a>
+	            	</div>
+	            </div>
+            {% endif %}
+            </br>
+            </br>
+            </br>
+            <!--Abrir Datos-->
+            {% if user.is_authenticated %}
+            <div class="navbar-collapse collapse dual-nav w-50 order-2">
+                <ul class="nav navbar-nav ml-auto right_j">
+                    <a class="abrir-cerrar d-none d-md-block d-sm-none btnTimer" href="{% url 'logout' %}">
+                        <button class="btn btn-outline-primary btnTexto" type="button" style="background-color: red; color: #fff;">
+                            Cerrar Sesión
+                        </button>
+                    </a>
+
+                </ul>
+            </div>
+            {% endif %}
+    </div>
+</nav>
+<br><br><br>

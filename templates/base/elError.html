@@ -1,0 +1,15 @@
+{% extends "base/base.html" %}
+{% block title %}Página no disponible {% endblock %}
+{% block content %}
+<h1>Acción no permitida</h1>
+
+
+        {% if errors %}
+            <div class="alert alert-danger">
+				<p>Lo sentimos, pero no es permitido realizar esta acción.</p>
+                <strong>{{ errors }}</strong>
+            </div>
+        {% endif %}
+
+
+{% endblock %}

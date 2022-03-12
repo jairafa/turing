@@ -1,0 +1,130 @@
+{% extends 'base/base.html' %}
+{% load static%}
+
+{% block title %}
+	{{title}}
+{% endblock %}
+
+
+{% block contentfluid %}
+
+<style type="text/css">
+	.table-striped>tbody>tr:nth-child(odd)>th, .table-striped>tbody>tr:nth-child(odd)>td {
+    background-color: transparent;
+}
+table {
+    border-collapse: collapse;
+    border-spacing: 2em 1em;
+  }
+  .table thead th {
+    vertical-align: bottom;
+    border-bottom: none;
+    padding: 10px;
+    border: 1px solid;
+  }
+  .table td {
+    vertical-align: top;
+    border-top: 1px solid #dee2e6;
+    padding: 15px;
+  }
+  .table-striped>tbody>tr:nth-child(odd)>th, .table-striped>tbody>tr:nth-child(odd)>td {
+    background-color: #dfe6f1;
+    color: #657396;
+  }
+.div_li_ul_a{
+	float: left;
+}
+.i_icono{
+	color: #fff;
+	font-size: 2.5em;
+
+}
+
+ul{
+	list-style:none
+}
+a>button>.btn-primary{
+	color:#fff;
+}
+</style>
+<div class="row">
+	<div class="col-md-12 col-sm-12 col-xs-12">
+		<!-- Fin Cuerpo  de la tabla-->
+
+
+			<div class="d-flex font-weight-bold">
+					 <a href="javascript:history.go(-1)" class="btn btn-primary btnTimer">
+	                	<ul style="margin: 0;float: left;color: #fff;width:auto;max-width:auto;padding-inline-start: 0px;padding-right: 1em;">
+							<li class="nav-item active">
+								<div class="div_li_ul_a">
+									<i class="fas fa-undo-alt" class="i_icono"></i>
+								</div>
+								<div class="div_texto_sub">
+									Volver
+								</div>
+							</li>
+						</ul>
+					</a>
+			</div>
+			<div class="container d-flex justify-content-center titulo-BuscadorProcesos font-weight-bold">
+			{{title}}</div>
+			<hr>
+		{% include "base/pagination.html" %}
+		<table class="table table-striped" style="zoom: 0.7;">
+			<!--Encabezo de la tabla-->
+
+			<thead class="table-primary">
+				<tr >
+					<th scope="col">Id</th>
+					<th scope="col">Nombre</th>
+					<th scope="col">Ciudad</th>
+					<th scope="col">Departamento</th>
+					<th scope="col">Categoría</th>
+					<th scope="col">Creador</th>
+					<th scope="col">Acciones</th>
+				</tr>
+			</thead>
+			<!-- Fin Encabezo de la tabla-->
+			<!--Cuerpo  de la tabla-->
+			<tbody>
+				{% if clients %}
+				{% for client in clients %}
+				<tr >
+					<td>{{client.id}}</td>
+					<td>{{client.name}}</td>
+					<td>{{client.departament.name}}</td>
+					<td>{{client.city.name}}</td>
+					<td>{{client.category.name}}</td>
+					<td>{{client.user_created.username}}</td>
+					<td>
+						<a class="btn btn-primary mt-1 btnTimer" href="{% url 'cliente:client_edit' client.id %}" target="_parent">
+						<i class="fas fa-book"></i>&nbsp;&nbsp;Ver Detalle</a>
+						<a class="btn btn-success mt-1 btnTimer" href="{% url 'cliente:client_add' %}" target="_parent">
+						<i class="fas fa-book"></i>&nbsp;&nbsp;Crear</a>
+						<a class="btn btn-success mt-1 btnTimer" href="{% url 'cliente:client_edit' client.id %}" target="_parent">
+						<i class="fas fa-book"></i>&nbsp;&nbsp;Eliminar</a>
+					</td>
+		<!--<td></td>-->
+				</tr>
+				{% endfor %}
+
+				{% else %}
+				    <table class="table table-striped text-center">
+					        <thead>
+					            <tr>
+					                <th scope="col" colspan="7">
+					                    La búsqueda  realizada con los parametro ingresados no arrojan resultados.
+					                </th>
+					            </tr>
+					        </thead>
+					    <table>
+
+				{% endif %}
+			</tbody>
+
+		</table>
+		<hr>
+	</div>
+</div>
+
+{% endblock %}

@@ -59,7 +59,7 @@ class Migration(migrations.Migration):
         El parametro indica la cantidad de clientes a crear
         """
         # generate_cliente(190000)
-        generate_cliente(19)
+        generate_cliente(200)
 
     def undo_init_cliente(apps, schema_editor):
         cliente = apps.get_model("cliente", "cliente")

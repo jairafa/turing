@@ -1,0 +1,90 @@
+{% extends 'base/base.html' %}
+{% load static%}
+
+{%block title%}{{title}}{% endblock %}
+
+{% block content %}
+
+<style type="text/css">
+  table {
+    border-collapse: collapse;
+    border-spacing: 2em 1em;
+  }
+  .table thead th {
+    vertical-align: bottom;
+    border-bottom: none;
+    padding: 10px;
+    border: 1px solid;
+  }
+  .table td {
+    vertical-align: top;
+    border-top: 1px solid #dee2e6;
+    padding: 15px;
+  }
+  .table-striped>tbody>tr:nth-child(odd)>th, .table-striped>tbody>tr:nth-child(odd)>td {
+    background-color: #dfe6f1;
+    color: #657396;
+  }
+</style>
+<body>
+
+  <center>
+    <a href="javascript:history.go(-1)" class="btn btn-primary btnTimer" style="float: left;">
+      <ul style="margin: 0;float: left;color: #fff;width:auto;max-width:auto;padding-inline-start: 0px;padding-right: 1em;">
+        <li class="nav-item active">
+          <div class="div_li_ul_a">
+            <i class="fas fa-undo-alt" class="i_icono"></i>
+          </div>
+          <div class="div_texto_sub">
+            Volver
+          </div>
+        </li>
+      </ul>
+    </a>
+      <div class="container d-flex justify-content-center titulo-BuscadorProcesos font-weight-bold" style="display:inline-block !important;max-width: max-content;">
+        {{title}}
+    </div>
+  </center>
+
+
+
+  <hr>
+
+ <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>Id</th>
+        <th>Nombre</th>
+        <th>Categoria</th>
+        <th>Creador</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>{{cliente.id}}</td>
+        <td>{{cliente.name}}</td>
+        <td>{{cliente.category.name}}</td>
+        <td>{{cliente.user_created.username}}</td>
+      </tr>
+    </tbody>
+ </table>
+
+ <table class="table table-striped" style="position: relative;
+    top: -20px;">
+    <thead>
+      <tr>
+        <th>Ciudad</th>
+        <th>Departamento</th>
+        <th>Pais</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>{{cliente.city.name}}</td>
+        <td>{{cliente.departament.name}}</td>
+        <td>{{cliente.country.name}}</td>
+      </tr>
+    </tbody>
+ </table>
+</body>
+{% endblock %}

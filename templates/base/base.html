@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="es">
+{% block head %}
+  <head>
+    {% load static %}
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!--<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="" crossorigin="anonymous">-->
+    <link rel="stylesheet" href="{% static 'css/bootstrap.css' %}" type='text/css'>
+    <link rel="stylesheet" href="{% static 'css/estilosRHV.css' %}" type='text/css'>
+    <link rel="stylesheet" href="{% static 'css/estilosHome.css' %}" type='text/css'>
+    <link rel="stylesheet" href="{% static 'css/select2.css' %}" type='text/css'>
+    <link rel="shortcut icon" href="{% static 'favicon.ico' %}"/>
+    <link rel="stylesheet" href="{% static 'css/jquery-ui.css' %}" type='text/css'>
+    <link rel="stylesheet" href="{% static 'css/sweetalert.css' %}">
+
+    <title>{%block title%}AITuring{% endblock %}</title>
+    <style>
+      .container {
+        max-width: 95%;
+      }
+      @media (min-width: 768px){
+        .navbar-expand-md .navbar-toggler {
+            display: block;
+        }
+      }
+      .cerrar{
+        display: none;
+      }
+      .sidebar {
+          background-color: #19294e;/*#19294ea8;*/
+
+      }
+       td{
+        border-color:transparent !important;
+      }
+
+
+
+      tr:nth-child(odd) {
+          background-color: #19294e !important;
+      }
+
+      table{
+        border-collapse: separate ;
+        border-spacing: 2em 1em  ;
+      }
+      #buscar_p_id{
+        color: #2e539c;
+      }
+      .menu{
+        width: 100%;
+      }
+      .select2-container {
+          max-width: 15em;
+          min-width: 15em;
+      }
+      ul{
+        list-style:none;
+      }
+      .div_li_ul_a {
+          float: left;
+          margin: 0em 0em 0em 1em;
+          margin-top: 5px;
+      }
+      .div_texto_sub {
+          margin: 0em 3em 0em 0em;
+          margin-top: 0px;
+          width: 100%;
+      }
+    </style>
+  </head>
+{% endblock %}
+  <body>
+
+    <!-- Inicio Nuevo Liti Radicaciones -->
+        {% block navbar%}
+    <div class="container">
+        {% include "./nav.html" %}
+    </div>
+    {% endblock%}
+
+    <!-- Fin nuevo Liti radicaciones -->
+
+  <div class="container">
+    <div class="cargando">
+        <center>
+          <img src="{% static 'img/Cargando.gif' %}" class="gif_cargando"><br><br>
+          <button class="btn btn-success gif_cargando" id="recargar" type="button">
+          Volver a intentarlo
+          </button>
+        </center>
+      </div>
+      <!-- <iframe src="" name="resultado_busqueda" frameborder="0" scrolling="no"></iframe> -->
+      <iframe src="" style="display: none;" name="resultado_busqueda_p" frameborder="0" scrolling="yes"></iframe>
+       <div class="contenido_principal">
+
+        {% block content %}
+          {% block h1 %}
+          {% endblock %}
+          {% block h2 %}
+          {% endblock %}
+          {% block h3 %}
+          {% endblock %}
+          {% block h4 %}
+          {% endblock %}
+          {% block h5 %}
+          {% endblock %}
+          {% block h6 %}
+          {% endblock %}
+          <!--<h1>este es el contenido del archivo base</h1>-->
+        {% endblock %}
+      </div>
+  </div>
+
+<div class="container-fluid div_container_principal">
+  {% block contentfluid %}
+  {% endblock %}
+</div>
+
+<br><br>
+
+    <div class="container-fluid">
+    {%block pie%}
+      <footer class="page-footer font-small colorFooterStart">
+          <!-- Footer Links -->
+          <div class="container">
+              <!-- Grid row-->
+              <hr class="rgba-white-light" style="margin: 0 15%;">
+              <!-- Grid row-->
+              <div class="row d-flex text-center justify-content-center mb-md-0 mb-4">
+                  <!-- Grid column -->
+                  <div class="col-md-8 col-12 mt-5">
+                      <p style="line-height: 1.7rem">
+                         Prueba Técnica - AITuring @2022-march
+                         <br>
+                         CRUD de Clientes, con cargas masivas al crear la base de datos y generar repote
+                         <br>
+
+              <a href="https://www.linkedin.com/in/jairo-vega-lizarazo/">
+                  https://www.linkedin.com/in/jairo-vega-lizarazo/
+              </a>
+                      </p>
+                  </div>
+                  <!-- Grid column -->
+              </div>
+              <!-- Grid row-->
+
+              <!-- Grid row-->
+
+              <!-- Grid row-->
+              </hr>
+              </hr>
+          </div>
+          <!-- Footer Links -->
+          <!-- Copyright -->
+          <div class="footer-copyright text-center py-3 colorFooterEnd">
+              © 2022 Pruebas Técnicas:
+              <a href="https://github.com/jairafa/turing">
+                  https://github.com/jairafa/turing
+              </a>
+          </div>
+          <!-- Copyright -->
+      </footer>
+    {% endblock %}
+    </div>
+
+      <script src="{% static 'js/jquery.min.js' %}"></script>
+      <script src="{% static 'js/jquery-1.12.4.js' %}"></script>
+      <script src="{% static 'js/jquery-ui.js' %}"></script>
+      <script src="{% static 'js/script.js' %}"></script>
+      <script src="{% static 'js/bootstrap.min.js' %}"></script>
+      <script src="{% static 'js/fontawesome-all.js' %}"></script>
+      <script src="{% static 'js/sweetalert.min.js' %}"></script>
+      <script src="{% static 'js/select2.js' %}"></script>
+      <script src="{% static 'js/vue.js' %}"></script>
+
+      <script src="{% static 'js/kit.fontawesome.js' %}"></script>
+      <script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
+
+ <script>
+  function getCurrentDayTimestamp() {
+    const d = new Date();
+
+    return new Date(
+      Date.UTC(
+        d.getFullYear(),
+        d.getMonth(),
+        d.getDate(),
+        d.getHours(),
+        d.getMinutes(),
+        d.getSeconds()
+      )
+    // `toIsoString` returns something like "2017-08-22T08:32:32.847Z"
+    // and we want the first part ("2017-08-22")
+    ).toISOString().slice(0, 10);
+  }
+
+  function toSelect2(isSelect, mensaje) {
+    if (isSelect.length > 0){
+      if ( isSelect[0].tagName === "SELECT" ) {
+        isSelect.select2({placeholder: mensaje ,allowClear:true});
+      }
+    }
+  }
+
+  $("#recargar").click(function(event) {
+      location.reload();
+  });
+
+$(".btnTimer").click(function() {
+    $(".contenido_principal").hide();
+    $(".gif_cargando").show();
+});
+
+</script>
+    {% block extrajs %}
+    {% endblock%}
+  </body>
+</html>

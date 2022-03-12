@@ -34,7 +34,7 @@ class territorial(models.Model):
         ),
     )  # noqa
     territorial_type = models.CharField(
-        "Tipo Territorio", max_length=12, choices=territorial_list, default="city"
+        "Tipo Territorio", max_length=12, choices=territorial_list, default="C"
     )
     created_at = models.DateTimeField("Fecha de creación", auto_now_add=True, auto_now=False)
     updated_at = models.DateTimeField("Fecha de actualización", auto_now_add=False, auto_now=True)
@@ -43,9 +43,7 @@ class territorial(models.Model):
         ordering = ["name"]
 
     def __str__(self):
-        return "{} {} {} padre {}".format(
-            self.id, self.name, self.territorial_type, self.parent_id
-        )
+        return "{}".format(self.name)
 
 
 class cliente(models.Model):
