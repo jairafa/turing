@@ -1,0 +1,74 @@
+.font-Tamaño1 {
+    color: #4d5e86;
+    font-size: 38px;
+}
+.font-Tamaño2{
+	color: #4d5e86;
+	font-size: 20px;
+	padding-left: 0px;
+	margin-left: -63px;
+}
+
+.font-Tamaño3{
+	color: #4d5e86;
+	font-size: 20px;
+}
+
+#containerid{
+
+}
+
+#id{
+
+}
+
+#id_id{
+	width: 250px;
+    padding-left: 95px;
+	background-color:#DCF8F8;
+}
+
+#proceso{
+
+}
+
+#id_proceso_id{
+	width: 254px;
+	background-color:#DCF8F8;
+    padding-left: 100px;
+
+}
+
+
+#id_cliente{
+	width: 313px;
+}
+
+#cliente{
+
+}
+
+#id_despacho{
+    width: 357px;
+
+}
+
+#despacho{
+}
+
+#observaciones{
+
+}
+
+#id_observaciones{
+    width: 253px;
+    height: 141px;
+}
+#contenarchivo{
+
+}
+
+#id_id,#id_proceso_id,#id_cliente,#id_despacho,#id_fecha_envio_month,#id_fecha_envio_day,#id_fecha_envio_year,#id_trasnportadora_envio,#id_guia_envio,#id_observaciones{
+	border-style: solid;
+	border-radius: 5px;
+}

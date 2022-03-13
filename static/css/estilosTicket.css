@@ -1,0 +1,145 @@
+/*fuente*/
+
+body {
+    font-family: 'Quicksand', sans-serif;
+}
+/*Fin fuente*/
+
+/*Navbar*/
+
+.bg-light {
+    background-color: #ffffff !important;
+}
+/*textos grandes*/
+
+.textoUsuario {
+    font-size: 25px;
+    color: #0033a0;
+    font-weight: 700;
+}
+.textoNombre {
+    font-size: 30px;
+    color: #007bff;
+    font-weight: 700;
+    cursor: default;
+}
+.textoNombreHover {
+    color: #fff;
+    background-color: #17a2b8;
+    border-color: #17a2b8;
+    font-weight: 700;
+}
+@media screen and (max-width: 908px) {
+    .right_j {
+        display: initial;
+    }
+}
+/*Fin textos grandes*/
+
+/*Texto responsivbos*/
+
+.textoUsuarioSmall {
+    font-size: 16px;
+    color: #0033a0;
+    font-weight: 700;
+}
+.textoNombreSmall {
+    font-size: 16px;
+    color: #007bff;
+    font-weight: 700;
+    cursor: default;
+}
+/*Fin Texto responsivbos*/
+
+/*Barra Divisora*/
+
+.barraDivisora {
+    font-size: 27px;
+}
+/*Fin Barra Divisora*/
+
+/*texto Barra Gestor*/
+
+.textoGestor {
+    font-size: 25px;
+    color: white;
+    font-weight: 700;
+}
+.textosInfo {
+    font-size: 15px;
+    color: white;
+}
+/*Fin texto Barra Gestor*/
+
+/*botones*/
+
+.btn-outline-primary {
+    color: #fff;
+    background-color: #17a2b8;
+    border-color: #17a2b8;
+    font-size: 18px;
+}
+.btn-outline-primary:hover {
+    color: #fff;
+    background-color: #17a2b8;
+    border-color: #17a2b8;
+}
+.advertencia {
+    border-bottom-style: solid;
+    display: none;
+}
+/*botones*/
+
+/*tamaño de la letra*/
+
+.titulo-Tickets {
+    font-size: 4em;
+    color: #f90;
+}
+.crearTickets {
+    font-size: 28px;
+    color: #f90;
+    cursor: default;
+}
+.crearTickets:hover {
+    color: #42547f;
+}
+.font-Tamaño {
+    font-size: 1.4em;
+    color: #4d5e86;
+}
+/*Fin tamaño de la letra*/
+
+/*Estilos de la Tabla Tickets*/
+
+thead tr th {
+    background-color: #004e7a;
+    border-style: solid;
+    border-color: white;
+    color: white;
+}
+tbody tr td {
+    border-style: solid;
+    border-color: white;
+}
+.table-striped>tbody>tr:nth-child(odd)>th, .table-striped>tbody>tr:nth-child(odd)>td {
+    background-color: #c3c3c3;
+}
+.cua1 {
+    border-top-left-radius: 20px;
+    border-style: none;
+}
+.cua2 {
+    border-top-right-radius: 20px;
+    border-style: none;
+}
+/*Fin de la tabla*/
+
+.verTicket {
+    font-size: 30px;
+    color: #f90;
+    cursor: default;
+}
+.verTicket:hover {
+    color: #42547f;
+}

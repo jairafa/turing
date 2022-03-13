@@ -1,0 +1,117 @@
+.font-Tamaño1 {
+    color: #4d5e86;
+    font-size: 38px;
+
+}
+.font-Tamaño2{
+color: #4d5e86;
+font-size: 20px;
+}
+.font-Tamaño3{
+color: #4d5e86;
+font-size: 18px;
+}
+.btnDesplegable{
+    color: #fff;
+    background-color: #4d5e86;
+    border-color: #4d5e86;
+}
+a:hover {
+    color: #ffff;
+    text-decoration: underline;
+}
+.form-check-input {
+    height: 23px;
+}
+#Id{
+    padding-left: 68px;
+}
+
+#id_radicado_id{
+    width: 219px;
+    height: 33px;
+    background-color:#DCF8F8;
+}
+
+#proceso{
+    padding-left: 79px;
+}
+
+#id_proceso_id{
+    width: 219px;
+    height: 33px;
+    background-color:#DCF8F8;
+}
+
+#id_despacho{
+	width: 527px;
+    padding-right: 0px;
+    padding-left: 0px;
+    margin-right: 301px;
+    height: 33px;
+    border-style: solid;
+	border-radius: 5px;
+}
+
+#despacho{
+	padding-left: 98px;
+}
+
+#estado{
+    padding-left: 105px;
+}
+
+#id_estado{
+    margin-left: 0px;
+    width: 218px;
+    height: 33px;
+}
+
+#envio{
+    padding-left: 66px;
+}
+
+#id_guia_envio{
+    width: 220px;
+    height: 33px;
+}
+
+#retorno{
+    padding-left: 43px;
+}
+
+#id_guia_retorno{
+    width: 222px;
+    height: 33px;
+}
+
+#fecha{
+    padding-left: 56px;
+}
+
+#id_fecha_envio{
+    width: 224px;
+    height: 33px;
+}
+
+#ciudad{
+    padding-left: 103px;
+}
+
+#id_localidad{
+    width: 228px;
+    height: 33px;
+}
+
+#id_proceso_id,#id_estado,#id_guia_envio,#id_guia_retorno,#id_fecha_envio,#id_radicado_id,#id_localidad,#id_username{
+	border-style: solid;
+	border-radius: 5px;
+}
+#usuario{
+    padding-left: 94px;
+}
+
+#id_username{
+    width: 228px;
+    height: 33px;
+}

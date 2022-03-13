@@ -1,0 +1,105 @@
+*{
+    padding:0px;
+    margin: 0px;
+    padding-left:0px;
+    margin-left: 0px;
+}
+.font-Tamaño1 {
+    color: #4d5e86;
+    font-size: 38px;
+}
+.font-Tamaño2{
+color: #4d5e86;
+font-size: 20px;
+padding-left: 0px;
+
+}
+
+.font-Tamaño3{
+color: #4d5e86;
+font-size: 20px;}
+
+#Id{
+   }
+
+#id_id{
+
+    width: 249px;
+    height: 32px;
+    padding-left: 91px;
+    background-color:#DCF8F8;
+}
+
+#proceso{
+
+}
+
+#id_proceso_id{
+    width: 252px;
+    padding-left: 100px;
+    background-color:#DCF8F8;
+
+}
+
+
+#cliente{
+
+}
+
+#id_cliente{
+
+    height: 28px;
+    margin-right: 0px;
+    width: 292px;
+
+
+}
+
+#id_despacho{
+    width: 370px;
+}
+
+
+}
+
+#fecha{
+
+}
+
+
+
+#id_trasnportadora_envio{
+	padding-left: 11px;
+
+}
+
+#transportadora{
+
+}
+
+#Guia{
+
+}
+
+#id_guia_envio{
+    padding-left: 10px;
+
+}
+
+#id_observaciones{
+
+    height: 163px;
+}
+
+#id_despacho{
+
+    width: 351px;
+}
+
+
+
+
+#id_id,#id_proceso_id,#id_cliente,#id_despacho,#id_fecha_envio,#id_trasnportadora_envio,#id_guia_envio,#id_observaciones{
+	border-style: solid;
+	border-radius: 5px;
+}

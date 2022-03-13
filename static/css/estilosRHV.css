@@ -1,0 +1,256 @@
+
+
+/*textos grandes*/
+
+.img_flecha {
+    float: right;
+    width: 1.5em;
+    height: auto;
+    -moz-transition: transform 1s;
+    -webkit-transition: transform 1s;
+    transition: transform 1s;
+}
+.flip {
+    float: right;
+    transform: rotate(-180deg);
+}
+.img_guia {
+    width: 3em;
+    height: auto;
+}
+.titulos_tabla_hv {
+    text-align: center;
+    background-color: #002a54 !important;
+    color: #fff !important;
+    cursor: pointer;
+}
+.textoUsuario {
+    font-size: 25px;
+    color: #0033a0;
+    font-weight: 700;
+}
+@media screen and (max-width: 908px) {
+    .right_j {
+        display: initial;
+    }
+}
+.textoNombre {
+    font-size: 30px;
+    color: #007bff;
+    font-weight: 700;
+    cursor: default;
+}
+.textoNombreHover {
+    color: #fff;
+    background-color: #17a2b8;
+    border-color: #17a2b8;
+    font-weight: 700;
+}
+/*Fin textos grandes*/
+
+/*Texto responsivbos*/
+
+.textoUsuarioSmall {
+    font-size: 16px;
+    color: #0033a0;
+    font-weight: 700;
+}
+.textoNombreSmall {
+    font-size: 16px;
+    color: #007bff;
+    font-weight: 700;
+    cursor: default;
+}
+/*Fin Texto responsivbos*/
+
+/*Barra Divisora*/
+
+.barraDivisora {
+    font-size: 27px;
+}
+/*Fin Barra Divisora*/
+
+/*texto Barra Gestor*/
+
+.textoGestor {
+    font-size: 25px;
+    color: white;
+    font-weight: 700;
+}
+.textosInfo {
+    font-size: 15px;
+    color: white;
+}
+/*Fin texto Barra Gestor*/
+
+/*botones*/
+
+.btn-outline-primary {
+    color: #fff;
+    background-color: #17a2b8;
+    border-color: #17a2b8;
+    font-size: 18px;
+}
+.btn-outline-primary:hover {
+    color: #fff;
+    background-color: #17a2b8;
+    border-color: #17a2b8;
+}
+.advertencia {
+    border-bottom-style: solid;
+    display: none;
+}
+/*botones*/
+
+/*tamaño de la letra*/
+
+.titulo-ResultadoHvida {
+    font-size: 2em;
+    color: #f90;
+}
+.misProcesos {
+    font-size: 20px;
+    color: #f90;
+    cursor: default;
+}
+/*Fin tamaño de la letra*/
+
+/*input estilo*/
+
+input[type=number]::-webkit-outer-spin-button, input[type=number]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+input[type=number] {
+    -moz-appearance: textfield;
+}
+.form-group>div {
+    position: relative;
+    margin-top: 5px;
+}
+/*.form-group>div>input {
+    box-sizing: border-box;
+    padding: 10px 30px 10px 10px;
+    width: 100%;
+    border: 1px solid #ccc;
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset;
+}*/
+.form-group>div>input {
+    box-sizing: border-box;
+    width: 100%;
+    /* box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset; */
+    width: 15em;
+    height: 2.2em;
+    border-radius: 8px;
+    border: 1px solid #2087c9;
+    padding: 5px;
+    outline: none;
+  }
+  .form-group>div>input:focus {
+    box-shadow: 0 0 5px #4fbeda;
+    padding: 3%;
+    border: 1px solid #2d9ec1;
+  }
+.form-group>div>img {
+    position: absolute;
+    right: 40px;
+    top: 6px;
+}
+@media screen and (max-width: 1120px) {
+    .select2-container--default .select2-selection--single {
+        width: 11em !important;
+    }
+    .form-group>div>input {
+          width: 11em;
+    }
+  }
+/*fin estilo input*/
+/* Estilos Textarea */
+  textarea {
+    resize: none;
+    width: 100%;
+    height: 9em;
+    border-radius: 1em;
+    background-color: #73c9ec2b !important;
+    padding: 2em;
+    outline: none;
+    border: 1px solid #1bb1dc;
+    box-shadow: 0 3px 0px 0 rgba(65, 62, 102, 0.08);
+    transition: all .3s ease-in-out;
+    position: relative;
+  }
+  textarea:after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 0%;
+    height: 5px;
+    background-color: #1bb1dc;
+    transition: 0.5s;
+  }
+  textarea:hover {
+    -webkit-transform: scale(1.05);
+    transform: scale(1.05);
+    /* box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75); */
+    box-shadow: -25px 20px 12px -11px rgba(191,191,191,1);
+  }
+
+  textarea:hover:after {
+    width: 100%;
+  }
+/* Fin Estilos Textarea */
+/*Estilos de la Tabla Busqueda Hoja de vida*/
+
+.cua1 {
+    border-top-left-radius: 20px;
+    border-style: none;
+}
+.cua2 {
+    border-top-right-radius: 20px;
+    border-style: none;
+}
+/*boton Gestor*/
+
+.btn-outline-primary:hover {
+    color: #fff;
+    background-color: #17a2b8;
+    border-color: #17a2b8;
+}
+.table-bordered {
+    border: none;
+}
+thead tr th {
+    background-color: #657396;
+    border-style: 1px solid;
+    color: white;
+}
+.table thead th {
+    vertical-align: bottom;
+    border-bottom: none;
+}
+table td, tr {
+    border: 1px solid #dee2e6;
+}
+.table th, .table td {
+    padding: 6px;
+    vertical-align: top;
+    border-top: 1px solid #dee2e6;
+}
+.table td {
+    padding: 0px;
+    vertical-align: top;
+    border-top: 1px solid #dee2e6;
+}
+.tablaSecundaria {
+    color: #fff;
+    background-color: #657396;
+}
+.btn-outline-primary {
+    color: #007bff;
+    background-color: transparent;
+    background-image: none;
+    border-color: #007bff;
+    font-weight: 700;
+}
+/*Fin boton Gestor*/

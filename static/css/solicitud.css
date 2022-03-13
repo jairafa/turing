@@ -1,0 +1,219 @@
+*{
+    padding:0px;
+    margin: 0px;
+    padding-left:0px;
+    margin-left: 0px;
+}
+.font-Tamaño1 {
+    color: #4d5e86;
+    font-size: 38px;
+}
+#conteProceso{
+    height: 0px;
+}
+#contedespa{
+    height:44px;
+}
+#conTipo{
+    padding-top: 31px;
+}
+#conArchivo{
+
+    padding-top: 36px;
+}
+#conobserva{
+    padding-top: 32px;
+}
+
+.font-Tamaño2{
+    color: #4d5e86;
+    font-size: 20px;
+    padding-left: 0px;
+    -left: -63px;
+}
+
+.font-Tamaño3{
+    color: #4d5e86;
+    font-size: 20px;
+}
+
+.btnDesplegable{
+    color: #fff;
+    background-color: #4d5e86;
+    border-color: #4d5e86;
+}
+
+a:hover {
+    color: #ffff;
+    text-decoration: underline;
+}
+
+#Id{
+
+    padding-left: 0px;
+    padding-right: 0px;
+    width: 165px;
+
+}
+
+.form-check-input {
+    height: 23px;
+}
+
+#h1{
+    text-align: center;
+}
+
+#despacho{
+
+    padding-left: 0px;
+    padding-right: 0px;
+    width: 164px;
+
+}
+
+#id_despacho{
+    height: 27px;
+    font-size:20px;
+    height: 33px;
+    padding-top: 0px;
+    width: 246px;
+}
+
+#proceso{
+
+    padding-left: 0px;
+    padding-right: 0px;
+    width: 165px;
+
+}
+
+#id_proceso_id{
+    height: 36px;
+    width: 241px;
+    padding-left: 100px;
+    background-color:#DCF8F8;
+}
+
+#cliente{
+
+    padding-left: 0px;
+    padding-right: 0px;
+    width: 163px;
+
+}
+
+#id_cliente{
+    width: 247px;
+    font-size:20px;
+}
+
+#fecha{
+
+    padding-left: 0px;
+    padding-right: 0px;
+    width: 172px;
+
+}
+#id_fecha_termino{
+    padding-left: 71px;
+
+}
+
+#tipo{
+
+    padding-left: 0px;
+    padding-right: 0px;
+    width: 217px;
+
+}
+
+#id_tipo_documento{
+
+    width: 250px;
+    font-family: inherit;
+    font-size:20px;
+}
+
+#envio{
+
+    padding-left: 0px;
+    padding-right: 0px;
+    width: 170px;
+
+}
+
+#id_tipo_envio{
+    width: 234px;
+    : 289px;
+    font-family: inherit;
+    font-size:20px;
+}
+
+#archivo{
+    font-family: inherit;
+    font-size:20px;
+    padding-left: 0px;
+    padding-right: 0px;
+    width: 231px;
+
+}
+
+#hora{
+
+    padding-left: 0px;
+    padding-right: 0px;
+    width: 165px;
+
+}
+
+#id_hora{
+    width: 240px;
+
+    font-family: inherit;
+    font-size:20px;
+    height: 40px;
+    padding-bottom: 7px;
+
+}
+
+#id_id{
+    height: 38px;
+    border-style: solid;
+    padding-left: 93px;
+    width: 243px;
+
+    font-family: inherit;
+    font-size:20px;
+    background-color:#DCF8F8;
+}
+
+#id{
+    width: 306px;
+    padding-left: 162px;
+
+    height: 0px;
+}
+
+#id_observaciones{
+    padding-bottom: 0px;
+    height: 158px;
+    width: 308px;
+    padding-left: 0px;
+
+     font-family: inherit;
+    font-size:20px;
+}
+
+#observaciones{
+
+    padding-left: 0px;
+    padding-right: 0px;
+    width: 276px;
+
+}
+
+#id_despacho,#id_cliente,#id_tipo_documento,#id_fecha_termino,#id_tipo_envio,#id_hora,#id_observaciones,#id_id,#id_proceso_id{
+    border-style: solid;
+    border-radius: 5px;
+}

@@ -1,0 +1,161 @@
+.font-Tamaño1 {
+    color: #4d5e86;
+    font-size: 38px;
+}
+.font-Tamaño2{
+color: #4d5e86;
+font-size: 20px;
+padding-left: 0px;
+margin-left: -63px;
+}
+
+.font-Tamaño3{
+color: #4d5e86;
+font-size: 20px;}
+
+#archivo{
+    padding-left: 0px;
+}
+
+#cliente{
+    padding-left: 51px;
+}
+
+#demandante{
+    margin-right: 22px;
+}
+
+#demandado{
+
+    padding-left: 9px;
+    margin-right: 10px;
+}
+
+#destinatario{
+    margin-right: 0px;
+    width: 200px;
+    padding-left: 0px;
+}
+
+
+#despacho{
+    padding-left: 29px;
+}
+
+#documento{
+    margin-right: 95px;
+    padding-left: 45px;
+}
+
+#envio{
+  padding-left: 3px;
+}
+
+#Id{
+    padding-left: 105px;
+}
+
+#id_id{
+    width: 328px;
+    padding-left: 138px;
+}
+
+#id_proceso_id{
+    width: 328px;
+    padding-left: 151px;
+}
+
+#id_localidad{
+    width: 327px;
+}
+
+
+#id_despacho{
+   width: 333px;
+}
+
+
+#id_cliente{
+    width: 335px;
+}
+
+#id_destinatario{
+    margin-right: 1px;
+    width: 339px;
+    padding-right: 11px;
+}
+
+
+#id_demandante{
+    padding-left: 5px;
+    margin-right: 10px;
+    width: 338px;
+}
+
+#id_demandado{
+    margin-right: 5px;
+    width: 336px;
+    padding-left: 0px;
+    margin-left: 0px;
+}
+
+#instancia{
+    padding-left: 25px;
+}
+
+
+#id_instancia{
+    width: 333px;
+}
+
+
+#id_tipo_documento{
+ 	width: 330px;
+    height: 26px;
+    margin-right: 92px;
+}
+
+
+#id_fecha_termino{
+	width: 291px;
+    margin-right: 278px;
+    margin-left: 0px;
+}
+
+
+#id_tipo_envio{
+    width: 327px;
+}
+
+
+#id_observaciones{
+    width: 333px;
+    height: 141px;
+    margin-right: 111px;
+}
+
+
+#id_id,#id_proceso_id,#id_localidad,#id_despacho,#id_cliente,#id_destinatario,#id_demandante,#id_demandado,#id_instancia,#id_tipo_documento,#id_fecha_termino,#id_tipo_envio,#id_observaciones{
+    border-style: solid;
+    border-radius: 5px;
+}
+
+#localidad{
+    padding-left: 30px;
+}
+
+#proceso_id{
+    padding-left: 48px;
+}
+
+#observaciones{
+    padding-left: 81px;
+    padding-right: 0px;
+    margin-right: 121px;
+}
+
+#termino{
+    padding-left: 68px;
+    margin-left: 78px;
+    margin-right: 106px;
+}

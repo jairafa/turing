@@ -1,0 +1,102 @@
+.font-Tamaño1 {
+    color: #4d5e86;
+    font-size: 38px;
+}
+.font-Tamaño2{
+color: #4d5e86;
+font-size: 20px;
+padding-left: 0px;
+    margin-left: -63px;
+
+
+}
+.font-Tamaño3{
+color: #4d5e86;
+font-size: 20px;}
+
+
+#id{
+   padding-left: 274px;
+}
+#id_id{
+    padding-right: 0px;
+    margin-right: 42px;
+    width: 242px;
+    margin-left: 0px;
+    padding-left: 95px;
+    background-color:#DCF8F8;
+}
+
+#proceso{
+    padding-left: 185px;
+    width: 298px;
+    height: 34px;
+    margin-left: 0px;
+
+}
+
+#id_proceso_id{
+    border-left-width: 2px;
+    width: 241px;
+    margin-right: 100px;
+    padding-left: 90px;
+    background-color:#DCF8F8;
+}
+
+#cliente{
+	left: 166px;
+    padding-left: 16px;
+}
+
+#id_cliente{
+	height: 27px;
+    margin-left: 244px;
+    width: 244px;
+}
+
+#fecha{
+    padding-left: 126px;
+    margin-right: 57px;
+}
+
+#id_fecha_retorno{
+    padding-right: 0px;
+    padding-left: 80px;
+    margin-right: 75px;
+    margin-left: 12px;
+}
+
+#retorno{
+    left: 166px;
+    padding-left: 78px;
+}
+
+#id_trasnportadora_retorno{
+    margin-left: 0px;
+    padding-left: 15px;
+    margin-right: 276px;
+    width: 258px;
+}
+
+#guiaRetorno{
+    padding-left: 158px;
+}
+
+#id_guia_retorno{
+    margin-right: 84px;
+    width: 258px;
+}
+
+#observaciones{
+    padding-left: 139px;
+}
+
+#id_observaciones{
+    margin-right: 81px;
+    width: 262px;
+    height: 157px;
+}
+
+#id_observaciones,#id_id,#id_proceso_id,#id_cliente,#id_fecha_retorno,#id_trasnportadora_retorno,#id_guia_retorno{
+    border-radius: 5px;
+}

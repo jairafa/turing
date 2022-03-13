@@ -1,0 +1,521 @@
+#imagen_cargando {
+    width: 50%;
+    height: auto;
+    margin: auto;
+}
+#error {
+    display: none;
+    background-color: red;
+    color: #fff;
+    max-width: 50%;
+    padding: 1em 1em 0.5em 1em;
+    font-size: 1.5em;
+    border-radius: 1em;
+}
+#buscar {
+    background-color: #647396;
+    color: #fff;
+    border: none;
+    border-radius: 1em;
+    width: 15%;
+    padding: 0.5em;
+}
+#titulo_inclusion {
+    background-color: #eef4fa;
+    padding: 2em;
+}
+#boton_mostrar_formulario {
+    width: 15%;
+    height: auto;
+}
+#boton_cancelar {
+    width: 10%;
+    height: auto;
+}
+#linea_titulo {
+    background-color: #2a2d6c;
+    width: 45%;
+    height: 2px;
+}
+.texto_titulo_inclusion_procesos {
+    color: #2a2d6c;
+    font-size: 2em;
+    font-weight: 600;
+    margin: 0;
+    text-align: center;
+}
+.texto_subtitulo_inclusion_procesos {
+    color: #69789a;
+    font-size: 1.3em;
+}
+#contenedor_texto_radicado {
+    text-align: center;
+}
+.campos_inclusion {
+    width: 24em;
+    text-align: center;
+    border-radius: 4px;
+    border: solid 1.5px #69789a;
+    font-size: 1.5vw;
+    margin-top: 1%;
+}
+#texto_numero_radicado {
+    font-size: 1.4vw;
+    color: #2a2d6c;
+}
+#texto_23_digitos {
+    font-size: 1.2vw;
+    color: #2a2d6c;
+}
+#mostrar_campos_demandante_demandado {
+    width: 35%;
+    background-color: #90b7df;
+    color: #fff;
+    padding: 9px;
+    font-size: 1.3vw;
+    border-radius: 10px;
+    cursor: pointer;
+}
+#linea_separador_demandante_demandado {
+    background-color: #2a2d6c;
+    width: auto;
+    height: 2px;
+}
+label {
+    display: inline-block;
+    color: #fff;
+    cursor: pointer;
+    font-weight: 100;
+    font-size: 1.2vw;
+    padding-top: 1%;
+}
+#check_box_autorizo {
+    display: inline-block;
+    position: relative;
+    background-color: #fff;
+    width: 25px;
+    height: 25px;
+    transform-origin: center;
+    border: 0px solid #e6eff8;
+    border-radius: 50%;
+    vertical-align: -6px;
+    margin-right: 10px;
+    transition: background-color 150ms 200ms, transform 350ms cubic-bezier(0.78, -1.22, 0.17, 1.89);
+}
+label span {
+    display: inline-block;
+    position: relative;
+    background-color: #aac8e6;
+    width: 25px;
+    height: 25px;
+    transform-origin: center;
+    border: 0px solid #fff;
+    border-radius: 50%;
+    vertical-align: -6px;
+    margin-right: 10px;
+    transition: background-color 150ms 200ms, transform 350ms cubic-bezier(0.78, -1.22, 0.17, 1.89);
+}
+label span:before {
+    content: "";
+    width: 0px;
+    height: 2px;
+    border-radius: 2px;
+    background: #fff;
+    position: absolute;
+    transform: rotate(45deg);
+    top: 13px;
+    left: 9px;
+    transition: width 50ms ease 50ms;
+    transform-origin: 0% 0%;
+}
+label span:after {
+    content: "";
+    width: 0;
+    height: 2px;
+    border-radius: 2px;
+    background: #fff;
+    position: absolute;
+    transform: rotate(305deg);
+    top: 16px;
+    left: 10px;
+    transition: width 50ms ease;
+    transform-origin: 0% 0%;
+}
+label:hover span:before {
+    width: 5px;
+    transition: width 100ms ease;
+}
+label:hover span:after {
+    width: 10px;
+    transition: width 150ms ease 100ms;
+}
+input[type="checkbox"] {
+    display: none;
+}
+input[type="checkbox"]:checked+label span {
+    background-color: #aac8e6;
+    ;
+    transform: scale(1.25);
+}
+input[type="checkbox"]:checked+label span:after {
+    width: 10px;
+    background: #fff;
+    transition: width 150ms ease 100ms;
+}
+input[type="checkbox"]:checked+label span:before {
+    width: 5px;
+    background: #fff;
+    transition: width 150ms ease 100ms;
+}
+input[type="checkbox"]:checked+label:hover span {
+    background-color: #aac8e6;
+    transform: scale(1.25);
+}
+input[type="checkbox"]:checked+label:hover span:after {
+    width: 10px;
+    background: #647396;
+    transition: width 150ms ease 100ms;
+}
+input[type="checkbox"]:checked+label:hover span:before {
+    width: 5px;
+    background: #647396;
+    transition: width 150ms ease 100ms;
+}
+#botones_tabla {
+    text-align: right;
+    padding-right: 4%;
+}
+#imagen_buscar {
+    width: 16%;
+    height: auto;
+}
+/*-----------------------------------Desde aquí inician los estilos para el pop up (buscador1.0.jsp)--------------------------------------*/
+
+body {
+    text-align: center;
+    font-family: sans-serif;
+    margin: 0;
+    line-height: 1em;
+}
+.modal {
+    width: 100%;
+    height: 62vw;
+    /*background: rgba(12, 18, 23, 0.45);*/
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: flex;
+    animation: modal 0s 0s forwards;
+    visibility: hidden;
+    opacity: 0;
+}
+.contenido {
+    margin: auto;
+    width: 60%;
+    height: 79%;
+    background: white;
+    border-radius: 10px;
+    margin-top: 1%;
+}
+#cerrar {
+    display: none;
+}
+#cerrar:checked+label, #cerrar:checked~.modal {
+    display: none;
+}
+@keyframes modal {
+    100% {
+        visibility: visible;
+        opacity: 1;
+    }
+}
+#texto_resultados_de_busqueda {
+    color: #2a2d6c;
+    font-size: 1vw;
+}
+#texto_informacion_incorrecta {
+    color: #989393;
+    font-size: 1.2vw;
+}
+.campos_formulario_23_digitos {
+    width: 73%;
+    text-align: center;
+    border-radius: 4px;
+    border: solid 1.5px #69789a;
+    font-size: 1vw;
+    margin-top: 1.4%;
+    margin-right: 1%;
+}
+.text_align_texto_formulario {
+    text-align: right;
+}
+.numero_radicado_23_dig {
+    border: solid 1.5px #69789a;
+    background-color: transparent;
+    font-size: 2vw;
+    color: #2b2e6d;
+    -webkit-margin-before: 0em;
+    -webkit-margin-after: 0.4em;
+    width: 42vw;
+    text-align: center;
+}
+#texto_numero_de_radicacion {
+    color: #2b2e6d;
+    font-weight: bold;
+    font-size: 2vw;
+    -webkit-margin-before: 0em;
+    -webkit-margin-after: 0.2em;
+    margin-top: 1%;
+}
+/*---------------------------------------Desde aquí inician los estilos para el select del año------------------------------------------*/
+
+select {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    -ms-appearance: none;
+    appearance: none;
+    outline: 0;
+    box-shadow: none;
+    border: 0 !important;
+    background: #ecf3fd;
+    background-image: none;
+}
+/* Custom Select */
+
+.select {
+    position: relative;
+    display: block;
+    width: 10vw;
+    height: 2vw;
+    line-height: 2;
+    background: #ecf3fd;
+    overflow: hidden;
+    border-radius: .25em;
+    margin: auto;
+    border: solid 1.5px #69789a;
+}
+select {
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0px 0 0 2.3vw;
+    cursor: pointer;
+    font-size: 1vw;
+}
+select::-ms-expand {
+    display: none;
+}
+/* Arrow */
+
+.select::after {
+    content: '\25BC';
+    position: absolute;
+    color: #283969;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    padding: 0 1em;
+    background: #dce8f4;
+    pointer-events: none;
+}
+/* Transition */
+
+.select:hover::after {
+    color: #aac8e6;
+}
+.select::after {
+    -webkit-transition: .25s all ease;
+    -o-transition: .25s all ease;
+    transition: .25s all ease;
+}
+#tabla_radicado {
+    background-color: #ecf3fd;
+    width: 100%;
+    margin-top: 2%;
+}
+#imagen_consultar_proceso {
+    width: 25%;
+    height: auto;
+}
+.imagen_cancelar {
+    width: 15%;
+    height: auto;
+}
+#imagen_cerrar {
+    width: 2.5vw;
+    height: auto;
+}
+#padding_campos {
+    padding-right: 102px;
+}
+/*------------------------------------------------------------Desde aquí inician los estilos responsive----------------------------------------------------------------------*/
+
+@media screen and (max-width: 1532px) {
+    .imagen_cancelar {
+        width: 15%;
+        height: auto;
+        margin-top: -19px;
+    }
+}
+@media screen and (max-width: 1358px) {
+    .imagen_cancelar {
+        position: relative;
+        bottom: 24px;
+        margin-top: 0px;
+    }
+    .select {
+        line-height: 1.8;
+    }
+}
+@media screen and (max-width: 1288px) {
+    #tabla_radicado {
+        border-spacing: 0px 5px;
+    }
+    .contenido {
+        height: 84%;
+    }
+    .select {
+        line-height: 1.5;
+    }
+}
+@media screen and (max-width: 1150px) {
+    #linea_titulo {
+        bottom: 8px;
+        position: relative;
+    }
+    .imagen_cancelar {
+        bottom: 33px;
+    }
+    #tabla_radicado {
+        margin-top: 1% !important;
+    }
+}
+@media screen and (max-width: 1099px) {
+    .campos_formulario_23_digitos {
+        width: 78%;
+        margin-top: 0%;
+        margin-right: 0%;
+    }
+    #texto_numero_de_radicacion {
+        margin-top: 2%;
+    }
+}
+@media screen and (max-width: 1043px) {
+    .contenido {
+        height: 86%;
+    }
+}
+@media screen and (max-width: 991px) {
+    .modal {
+        height: 91vw;
+    }
+    #padding_right_ciudad {
+        padding-right: 75px;
+    }
+    #linea_titulo {
+        bottom: 2px;
+    }
+    .contenido {
+        height: 79%;
+        width: 87%;
+    }
+    .select {
+        height: auto;
+        width: 13vw;
+    }
+    select {
+        padding: 0px 0 0 1.3vw;
+        font-size: 2vw;
+    }
+    .campos_formulario_23_digitos {
+        width: 100%;
+        font-size: 2vw;
+    }
+    #imagen_cerrar {
+        width: 4.5vw;
+        height: auto;
+    }
+    .text_align_texto_formulario {
+        text-align: right;
+        padding-right: 51px;
+    }
+    #contenedor_texto_radicado {
+        text-align: center;
+        padding-right: 0%;
+    }
+    #texto_numero_radicado {
+        font-size: 3vw;
+    }
+    #texto_23_digitos {
+        font-size: 3.2vw;
+    }
+    #mostrar_campos_demandante_demandado {
+        width: 51%;
+        font-size: 2.3vw;
+    }
+    #imagen_buscar {
+        width: 30%;
+    }
+    #texto_resultados_de_busqueda {
+        font-size: 2.5vw;
+    }
+    #texto_informacion_incorrecta {
+        font-size: 2.2vw;
+    }
+    #boton_mostrar_formulario {
+        width: 30%;
+    }
+    #boton_cancelar {
+        width: 19%;
+    }
+}
+@media screen and (max-width: 891px) {
+    .contenido {
+        height: 82%;
+    }
+}
+@media screen and (max-width: 778px) {
+    .contenido {
+        height: 84%;
+    }
+}
+@media screen and (max-width: 708px) {
+    .contenido {
+        height: 86%;
+    }
+}
+@media screen and (max-width: 658px) {
+    .contenido {
+        height: 95%;
+    }
+    #texto_numero_de_radicacion {
+        margin-top: 6%;
+    }
+    .select {
+        width: 17vw;
+    }
+}
+@media screen and (max-width: 647px) {
+    .contenido {
+        height: 97%;
+    }
+}
+@media screen and (max-width: 606px) {
+    .contenido {
+        height: 97%;
+    }
+}
+@media screen and (max-width: 563px) {
+    .contenido {
+        height: 99%;
+    }
+}
+@media screen and (max-width: 505px) {
+    .texto_titulo_inclusion_procesos {
+        font-size: 1em;
+    }
+    .texto_subtitulo_inclusion_procesos {
+        font-size: 0.7em;
+    }
+}
+/*--------------------------------------------------------Hasta aquí llegan los estilos responsive--------------------------------------------------------------------------------------------*/
