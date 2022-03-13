@@ -83,6 +83,8 @@ a>button>.btn-primary{
 					<th scope="col">Departamento</th>
 					<th scope="col">Categoría</th>
 					<th scope="col">Creador</th>
+					<th scope="col">FCrea</th>
+					<th scope="col">FCrea</th>
 					<th scope="col">Acciones</th>
 				</tr>
 			</thead>
@@ -98,6 +100,8 @@ a>button>.btn-primary{
 					<td>{{client.city.name}}</td>
 					<td>{{client.category.name}}</td>
 					<td>{{client.user_created.username}}</td>
+					<td>{{client.created_at|date:'Y-m-d H:i'}}</td>
+					<td>{{client.created_at}}</td>
 					<td>
 						<a class="btn btn-primary mt-1 btnTimer" href="{% url 'cliente:client_edit' client.id %}" target="_parent">
 						<i class="fas fas fa-search"></i>&nbsp;&nbsp;Consultar</a>

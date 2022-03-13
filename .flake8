@@ -1,5 +1,5 @@
 [flake8]
-ignore = F401, F403
+ignore = F401, F403, C901
 exclude = settings.py, .git, *migrations*, 0001_initial.py, *.js
 max-line-length = 99
 count = True

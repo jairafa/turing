@@ -11,6 +11,8 @@ from cliente.views import (
     territorial_get_sons,
 )
 
+s_url_list: str = "list_class/<str:s_order>/<int:id>/<int:city_id>/<int:departament_id>/"
+s_url_list += "<int:category_id>/<str:name>/<str:fecha_ini>/<str:fecha_fin>"
 urlpatterns = [
     path("find/", client_filter_view, name="client_filter"),
     path("edit/<int:pk>/", client_edit.as_view(), name="client_edit"),
@@ -21,7 +23,7 @@ urlpatterns = [
     path("list_func/", client_list_view, name="client_list_view"),
     path("list/<str:s_order>", client_list.as_view(), name="client_list_class"),
     path(
-        "list_class/<int:id>/<int:city_id>/<int:departament_id>/<int:category_id>/<str:name>",
+        s_url_list,
         client_list.as_view(),
         name="client_list_class",
     ),

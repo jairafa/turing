@@ -18,6 +18,28 @@ class client_filter_form(forms.Form):
     category = forms.ModelChoiceField(
         required=False, label="Categorias", queryset=category.objects.all()
     )
+    fecha_ini = forms.DateField(
+        widget=forms.widgets.DateInput(attrs={"type": "date"}),
+        required=False,
+        label="F Crea Inicio",
+    )
+    fecha_fin = forms.DateField(
+        widget=forms.widgets.DateInput(attrs={"type": "date"}), required=False, label="F Crea Fin"
+    )
+    order_by_id = forms.ChoiceField(
+        label="Ordenamiento por id",
+        choices=(
+            (
+                "asc",
+                "Ascendente",
+            ),
+            (
+                "desc",
+                "Descendente",
+            ),
+        ),
+        initial="asc",
+    )
     generar_xls = forms.ChoiceField(
         choices=(
             (

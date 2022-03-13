@@ -1,3 +1,5 @@
+import datetime
+
 from django.shortcuts import render
 from django.views.generic.edit import UpdateView, CreateView
 
@@ -8,6 +10,7 @@ from django.shortcuts import render, redirect  # noqa: F811
 from django.core.paginator import Paginator
 from cliente.forms import client_form, client_filter_form, client_desable_form
 from cliente.models import cliente, territorial
+from functions.dates import convert_str_to_datetime
 
 
 def index_view(request):
@@ -26,6 +29,10 @@ def client_filter_view(request):
         city = data["city"]
         departament = data["departament"]
         category = data["category"]
+        fecha_ini = data["fecha_ini"]
+        fecha_fin = data["fecha_fin"]
+        order_by_id = data["order_by_id"]
+        generar_xls = data["generar_xls"]
 
         if cliente_id:
             cliente_id = cliente_id
@@ -45,13 +52,23 @@ def client_filter_view(request):
             category_id = category.id
         else:
             category_id = 0
+        if not fecha_ini:
+            fecha_ini = "0"
+        if not fecha_fin:
+            fecha_fin = "0"
+        if not generar_xls:
+            generar_xls = "N"
+
         return redirect(
             "cliente:client_list_class",
+            s_order=order_by_id,
             id=cliente_id,
             city_id=city_id,
             departament_id=departament_id,
             category_id=category_id,
             name=name,
+            fecha_ini=fecha_ini,
+            fecha_fin=fecha_fin,
         )
     return render(
         request,
@@ -73,10 +90,8 @@ class client_list(ListView):
         return context
 
     def get_queryset(self):
-
-        kwargs_filter = {}
-
         s_order: str = "asc"
+        kwargs_filter = {}
         if "s_order" in self.kwargs:
             s_order = self.kwargs["s_order"]
         if "id" in self.kwargs:
@@ -95,22 +110,56 @@ class client_list(ListView):
         if "name" in self.kwargs:
             if self.kwargs["name"] != "0":
                 name = self.kwargs["name"]
+        s_fecha_ini: str = ""
+        datetime_ini: datetime = None
+        # print(f"datetime_ini antes {datetime_ini}")
+        if "fecha_ini" in self.kwargs:
+            if self.kwargs["fecha_ini"] != "0":
+                s_fecha_ini = self.kwargs["fecha_ini"]
+                # print(f"s_fecha_ini antes {s_fecha_ini}")
+                datetime_ini = convert_str_to_datetime(s_fecha_ini, "initial")
+                # print(f"datetime_ini despues {datetime_ini}")
+                # print(f"datetime_ini type {type(datetime_ini)}")
+        s_fecha_fin: str = ""
+        datetime_fin: datetime = None
+        # print(f"datetime_fin antes {datetime_fin}")
+        if "fecha_fin" in self.kwargs:
+            if self.kwargs["fecha_fin"] != "0":
+                s_fecha_fin = self.kwargs["fecha_fin"]
+                # print(f"s_fecha_fin antes {s_fecha_fin}")
+                datetime_fin = convert_str_to_datetime(s_fecha_fin, "final")
+                # print(f"datetime_fin despues {datetime_fin}")
+                # print(f"datetime_fin type {type(datetime_fin)}")
 
         kwargs_filter["is_active"] = 1
 
-        s_order = "-id"
+        s_order_by_is: str = "-id"
         if s_order == "asc":
-            s_order = "id"
+            s_order_by_is = "id"
 
         if len(name) > 0:
-            clients = (
-                cliente.objects.filter(**kwargs_filter)
-                .filter(name__icontains=name)
-                .order_by(s_order)[:1000]
-            )
+            if datetime_ini and datetime_fin:
+                clients = (
+                    cliente.objects.filter(**kwargs_filter)
+                    .filter(name__icontains=name)
+                    .order_by(s_order_by_is)[:1000]
+                )
+            else:
+                clients = (
+                    cliente.objects.filter(**kwargs_filter)
+                    .filter(name__icontains=name)
+                    .filter(created_at__range=(datetime_ini, datetime_fin))
+                    .order_by(s_order_by_is)[:1000]
+                )
         else:
-            clients = cliente.objects.filter(**kwargs_filter).order_by(s_order)[:1000]
-
+            if datetime_ini and datetime_fin:
+                clients = (
+                    cliente.objects.filter(**kwargs_filter)
+                    .filter(created_at__range=(datetime_ini, datetime_fin))
+                    .order_by(s_order_by_is)[:1000]
+                )
+            else:
+                clients = cliente.objects.filter(**kwargs_filter).order_by(s_order_by_is)[:1000]
         return clients
 
 
