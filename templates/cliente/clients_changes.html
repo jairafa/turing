@@ -159,7 +159,11 @@
 {% endif %}
 
 
- <form method="POST" onsubmit="return checkForm(this);">
+ <form method="POST"
+      id = "client_form"
+      url_territorial_get_sons="{% url 'cliente:ajax_territorial_get_sons' %}"
+      onsubmit="return checkForm(this);">
+  {# url_departament_get_cities="{ url 'cliente:departament_get_cities' }" #}
   {% csrf_token %}
   {% for hidden in form.hidden_fields %}
     {{ hidden }}
@@ -291,5 +295,51 @@
       toSelect2($('#id_category'),"Seleccione una Categoría")
     });
   </script>
+
+  <script>
+    //Obtiene todos los territorios hijos (departamentos) de un pais
+    $("#id_country").change(function () {
+      var parent_id = $(this).val();
+      if (parent_id > 0){
+          var url = $("#client_form").attr("url_territorial_get_sons");
+          $.ajax({
+              url:url,
+              data: {
+                'ajax_parent_id':parent_id
+              },
+              success: function (data) {
+                $("#id_departament").html(data);
+              },
+              error : function(message) {
+                  console.log(message);
+              }
+          });
+      }
+      return false;
+    });
+</script>
+
+  <script>
+    //Obtiene todos los territorios hijos (ciudades) de un departamento
+    $("#id_departament").change(function () {
+      var parent_id = $(this).val();
+      if (parent_id > 0){
+          var url = $("#client_form").attr("url_territorial_get_sons");
+          $.ajax({
+              url:url,
+              data: {
+                'ajax_parent_id':parent_id
+              },
+              success: function (data) {
+                $("#id_city").html(data);
+              },
+              error : function(message) {
+                  console.log(message);
+              }
+          });
+      }
+      return false;
+    });
+</script>
 
 {% endblock %}

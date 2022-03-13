@@ -100,11 +100,13 @@ a>button>.btn-primary{
 					<td>{{client.user_created.username}}</td>
 					<td>
 						<a class="btn btn-primary mt-1 btnTimer" href="{% url 'cliente:client_edit' client.id %}" target="_parent">
-						<i class="fas fa-book"></i>&nbsp;&nbsp;Ver Detalle</a>
+						<i class="fas fas fa-search"></i>&nbsp;&nbsp;Consultar</a>
+						<a class="btn btn-warning mt-1 btnTimer" href="{% url 'cliente:client_update' client.id %}" target="_parent">
+						<i class="fas fa-book"></i>&nbsp;&nbsp;Actualizar</a>
 						<a class="btn btn-success mt-1 btnTimer" href="{% url 'cliente:client_add' %}" target="_parent">
-						<i class="fas fa-book"></i>&nbsp;&nbsp;Crear</a>
-						<a class="btn btn-success mt-1 btnTimer" href="{% url 'cliente:client_edit' client.id %}" target="_parent">
-						<i class="fas fa-book"></i>&nbsp;&nbsp;Eliminar</a>
+						<i class="fas fa-address-card"></i>&nbsp;&nbsp;Crear</a>
+						<a class="btn btn-danger mt-1 btnTimer" href="{% url 'cliente:client_delete' client.id %}" target="_parent">
+						<i class="fas fa-balance-scale"></i>&nbsp;&nbsp;Eliminar</a>
 					</td>
 		<!--<td></td>-->
 				</tr>

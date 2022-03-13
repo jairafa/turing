@@ -6,8 +6,8 @@ from django.views.generic import TemplateView, ListView
 from django.contrib.auth.models import User
 from django.shortcuts import render, redirect  # noqa: F811
 from django.core.paginator import Paginator
-from cliente.forms import client_form, client_filter_form
-from cliente.models import cliente
+from cliente.forms import client_form, client_filter_form, client_desable_form
+from cliente.models import cliente, territorial
 
 
 def index_view(request):
@@ -76,6 +76,9 @@ class client_list(ListView):
 
         kwargs_filter = {}
 
+        s_order: str = "asc"
+        if "s_order" in self.kwargs:
+            s_order = self.kwargs["s_order"]
         if "id" in self.kwargs:
             if self.kwargs["id"] != 0:
                 kwargs_filter["id"] = self.kwargs["id"]
@@ -88,7 +91,6 @@ class client_list(ListView):
         if "category_id" in self.kwargs:
             if self.kwargs["category_id"] != 0:
                 kwargs_filter["category_id"] = self.kwargs["category_id"]
-
         name: str = ""
         if "name" in self.kwargs:
             if self.kwargs["name"] != "0":
@@ -96,14 +98,18 @@ class client_list(ListView):
 
         kwargs_filter["is_active"] = 1
 
+        s_order = "-id"
+        if s_order == "asc":
+            s_order = "id"
+
         if len(name) > 0:
             clients = (
                 cliente.objects.filter(**kwargs_filter)
                 .filter(name__icontains=name)
-                .order_by("id")[:1000]
+                .order_by(s_order)[:1000]
             )
         else:
-            clients = cliente.objects.filter(**kwargs_filter).order_by("id")[:1000]
+            clients = cliente.objects.filter(**kwargs_filter).order_by(s_order)[:1000]
 
         return clients
 
@@ -169,26 +175,82 @@ class client_create(CreateView):
         # frmRad = form.save(commit = False) #solicitar2Form.cleaned_data
         # frmRad.save()
         # return redirect("cliente:client_filter", user_correo_id =data['user_correo'].id)
-        return redirect("cliente:client_filter")
+        return redirect("cliente:client_list_class", s_order="desc")
 
 
 class client_update(UpdateView):
     model = cliente
-    template_name = "cliente/clients_changes.html"
     form_class = client_form
+    template_name = "cliente/clients_changes.html"
 
     def get_context_data(self, **kwargs):
         context = super(client_update, self).get_context_data(**kwargs)
         context["title"] = "Actualizar Cliente"
+        pk = self.kwargs.get("pk", 0)
+        cliente = self.model.objects.get(id=pk)
+        context["form"] = self.form_class(instance=cliente)
         return context
+
+    def post(self, request, *args, **kwargs):
+        self.object = self.get_object()
+        form_class = self.get_form_class()
+        form = self.get_form(form_class)
+
+        if form.is_valid():
+            return self.form_valid(request, form)
+        else:
+            return self.form_invalid(form)
+
+    def form_invalid(self, form):
+        return self.render(self.get_context_data(form=form))
+
+    def form_valid(self, request, form):
+        form.save()
+        return redirect("cliente:client_list_class", s_order="desc")
 
 
 class client_delete(UpdateView):
     model = cliente
     template_name = "cliente/clients_changes.html"
-    form_class = client_form
+    form_class = client_desable_form
 
     def get_context_data(self, **kwargs):
-        context = super(client_update, self).get_context_data(**kwargs)
-        context["title"] = "Actualizar Cliente"
+        context = super(client_delete, self).get_context_data(**kwargs)
+        context["title"] = "Eliminar Cliente"
+        pk = self.kwargs.get("pk", 0)
+        cliente = self.model.objects.get(id=pk)
+        context["form"] = self.form_class(instance=cliente)
         return context
+
+    def post(self, request, *args, **kwargs):
+        self.object = self.get_object()
+        form_class = self.get_form_class()
+        form = self.get_form(form_class)
+
+        if form.is_valid():
+            return self.form_valid(request, form)
+        else:
+            return self.form_invalid(form)
+
+    def form_invalid(self, form):
+        return self.render(self.get_context_data(form=form))
+
+    def form_valid(self, request, form):
+        client = form.save(commit=False)
+        client.is_active = 0
+        client.save()
+        return redirect("cliente:client_list_class", s_order="desc")
+
+
+def territorial_get_sons(request):
+    """Obtiene todos los hijos de un territorio padre"""
+    s_parent_id: str = ""
+    if request.method == "POST":
+        s_parent_id = request.POST.get("ajax_parent_id")
+    else:
+        s_parent_id = request.GET.get("ajax_parent_id")
+    # print(f"ajax territorial_get_sons s_parent_id: {s_parent_id}")
+
+    territorials = []
+    territorials = territorial.objects.filter(parent_id=s_parent_id).order_by("name")
+    return render(request, "base/dropdown_list_options.html", {"options": territorials})

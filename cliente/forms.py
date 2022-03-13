@@ -72,3 +72,41 @@ class client_form(forms.ModelForm):
             "departament": "Departamento",
             "city": "Ciudad",
         }
+
+
+class client_desable_form(forms.ModelForm):
+    disabled_fields = (
+        "name",
+        "category",
+        "country",
+        "departament",
+        "city",
+    )
+
+    class Meta:
+        model = cliente
+        fields = [
+            "id",
+            "name",
+            "category",
+            "country",
+            "departament",
+            "city",
+            "is_active",
+        ]
+        labels = {
+            "name": "Nombre",
+            "category": "Categoría",
+            "country": "Pais",
+            "departament": "Departamento",
+            "city": "Ciudad",
+        }
+
+    def __init__(self, *args, **kwargs):
+        super(client_desable_form, self).__init__(*args, **kwargs)
+        self.fields["is_active"].widget = forms.HiddenInput()
+        for field in iter(self.fields):
+            if field != "id":
+                self.fields[field].widget.attrs.update({"class": "form-control"})
+        for field in self.disabled_fields:
+            self.fields[field].disabled = True
