@@ -67,6 +67,11 @@ class client_list(ListView):
     paginate_by = 10
     context_object_name = "clients"
 
+    def get_context_data(self, **kwargs):
+        context = super(client_list, self).get_context_data(**kwargs)
+        context["title"] = "Selección de Clientes"
+        return context
+
     def get_queryset(self):
 
         kwargs_filter = {}
