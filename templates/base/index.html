@@ -63,7 +63,7 @@
                 <li class="item" id="item4">
                   <a class="nav-link btnTimer" href="{% url 'cliente:client_filter' %}">
                     <div class=" padding_blocks">
-                      <p class="texto-iconos text-center">  Clientes  </p><br><br>
+                      <p class="texto-iconos text-center"> Filtro Clientes  </p><br><br>
                       <div class="div_icono">
                         <center>
                         <i class="fas fa-search" class="i_icono"></i>
@@ -72,6 +72,20 @@
                     </div>
                   </a>
                 </li>
+
+                <li class="item" id="item4">
+                  <a class="nav-link btnTimer" href="{% url 'cliente:client_list_class' %}">
+                    <div class=" padding_blocks">
+                      <p class="texto-iconos text-center"> Lista Clientes  </p><br><br>
+                      <div class="div_icono">
+                        <center>
+                        <i class="fas fa-balance-scale" class="i_icono"></i>
+                        </center>
+                      </div>
+                    </div>
+                  </a>
+                </li>
+
 
               {% if user.profile.getOpciones %}
                   {% for opcion in user.profile.getOpciones %}

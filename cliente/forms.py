@@ -18,6 +18,19 @@ class client_filter_form(forms.Form):
     category = forms.ModelChoiceField(
         required=False, label="Categorias", queryset=category.objects.all()
     )
+    generar_xls = forms.ChoiceField(
+        choices=(
+            (
+                "S",
+                "Generar Excell",
+            ),
+            (
+                "N",
+                "Ver Datos",
+            ),
+        ),
+        initial="N",
+    )
 
 
 class client_form(forms.ModelForm):

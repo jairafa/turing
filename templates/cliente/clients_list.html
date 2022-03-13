@@ -69,6 +69,8 @@ a>button>.btn-primary{
 			<div class="container d-flex justify-content-center titulo-BuscadorProcesos font-weight-bold">
 			{{title}}</div>
 			<hr>
+		<!--{ include "base/pagination.html" }-->
+		<!--{ include "cliente/clients_pagination.html" }-->
 		{% include "base/pagination.html" %}
 		<table class="table table-striped" style="zoom: 0.7;">
 			<!--Encabezo de la tabla-->
@@ -87,8 +89,8 @@ a>button>.btn-primary{
 			<!-- Fin Encabezo de la tabla-->
 			<!--Cuerpo  de la tabla-->
 			<tbody>
-				{% if clients %}
-				{% for client in clients %}
+				{% if page_obj %}
+				{% for client in page_obj %}
 				<tr >
 					<td>{{client.id}}</td>
 					<td>{{client.name}}</td>
