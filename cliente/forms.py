@@ -1,7 +1,7 @@
 from django import forms
 from .models import territorial, category, cliente
 
-from tareas.procesos.cliente_dummy import get_system_user
+from processes.cliente_dummy import get_system_user
 
 
 class client_filter_form(forms.Form):

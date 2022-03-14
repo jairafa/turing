@@ -5,9 +5,9 @@ from django.db import migrations, models
 from django.contrib.auth.models import User
 import django.db.models.deletion
 
-from tareas.procesos.category import migrate_category
-from tareas.procesos.territorial import migrate_territorial
-from tareas.procesos.cliente_dummy import generate_cliente
+from processes.category import migrate_category
+from processes.territorial import migrate_territorial
+from processes.cliente_dummy import generate_cliente
 
 
 class Migration(migrations.Migration):

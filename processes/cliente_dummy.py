@@ -6,7 +6,7 @@ from random import random
 from django.contrib.auth.models import User
 
 from cliente.models import cliente
-from tareas.procesos.territorial_singleton import territorial_list
+from processes.territorial_singleton import territorial_list
 
 os.environ.setdefault("DJANGO_SETTINGS_MODULE", "turing.settings")
 

@@ -10,7 +10,12 @@ from django.shortcuts import render, redirect  # noqa: F811
 from django.core.paginator import Paginator
 from cliente.forms import client_form, client_filter_form, client_desable_form
 from cliente.models import cliente, territorial
-from functions.dates import convert_str_to_datetime
+from functions.dates import convert_str_to_datetime, convert_date_to_datetime
+from processes.client_excel import client_excel
+from processes.download_file_csv import download_file
+
+Vector = []
+Dictionary = {}
 
 
 def index_view(request):
@@ -59,22 +64,126 @@ def client_filter_view(request):
         if not generar_xls:
             generar_xls = "N"
 
-        return redirect(
-            "cliente:client_list_class",
-            s_order=order_by_id,
-            id=cliente_id,
-            city_id=city_id,
-            departament_id=departament_id,
-            category_id=category_id,
-            name=name,
-            fecha_ini=fecha_ini,
-            fecha_fin=fecha_fin,
-        )
+        if "S" in generar_xls:
+            kwargs = {}
+            kwargs["s_order"] = order_by_id
+            kwargs["id"] = cliente_id
+            kwargs["city_id"] = city_id
+            kwargs["departament_id"] = departament_id
+            kwargs["category_id"] = category_id
+            kwargs["name"] = name
+            kwargs["fecha_ini"] = fecha_ini
+            kwargs["fecha_fin"] = fecha_fin
+            clients: [cliente]
+            clients = get_filtered_clients(kwargs)
+
+            if len(clients) > 0:
+                file_name: str = ""
+                s_path_file: str = ""
+                (file_name, s_path_file) = client_excel(clients)
+                response = download_file(file_name, s_path_file)
+                return response
+            elError = "No existen clientes para el filtro indicado"
+        else:
+            return redirect(
+                "cliente:client_list_class",
+                s_order=order_by_id,
+                id=cliente_id,
+                city_id=city_id,
+                departament_id=departament_id,
+                category_id=category_id,
+                name=name,
+                fecha_ini=fecha_ini,
+                fecha_fin=fecha_fin,
+            )
     return render(
         request,
         "cliente/clients_find.html",
         {"form": form, "title": "Búsqueda de Clientes", "error": elError},
     )
+
+
+def get_filtered_clients(kwargs: Dictionary) -> Vector:
+    s_order: str = "asc"
+    kwargs_filter = {}
+    kwargs_filter["is_active"] = 1
+    if "s_order" in kwargs:
+        s_order = kwargs["s_order"]
+    if "id" in kwargs:
+        if kwargs["id"] != 0:
+            kwargs_filter["id"] = kwargs["id"]
+    if "city_id" in kwargs:
+        if kwargs["city_id"] != 0:
+            kwargs_filter["city_id"] = kwargs["city_id"]
+    if "departament_id" in kwargs:
+        if kwargs["departament_id"] != 0:
+            kwargs_filter["departament_id"] = kwargs["departament_id"]
+    if "category_id" in kwargs:
+        if kwargs["category_id"] != 0:
+            kwargs_filter["category_id"] = kwargs["category_id"]
+    name: str = ""
+    if "name" in kwargs:
+        if kwargs["name"] != "0":
+            name = kwargs["name"]
+    s_fecha_ini: str = ""
+    datetime_ini: datetime = None
+    # print(f"datetime_ini antes {datetime_ini}")
+    if "fecha_ini" in kwargs:
+        if kwargs["fecha_ini"] != "0":
+            s_fecha_ini = kwargs["fecha_ini"]
+            # print(f"s_fecha_ini antes {s_fecha_ini}")
+            # print(f"s_fecha_ini type {type(s_fecha_ini)}")
+            if isinstance(s_fecha_ini, str):
+                # print("Entra por str")
+                datetime_ini = convert_str_to_datetime(s_fecha_ini, "initial")
+            else:
+                # print("Entra por date")
+                datetime_ini = convert_date_to_datetime(s_fecha_ini, "initial")
+            # print(f"datetime_ini despues {datetime_ini}")
+            # print(f"datetime_ini type {type(datetime_ini)}")
+    s_fecha_fin: str = ""
+    datetime_fin: datetime = None
+    # print(f"datetime_fin antes {datetime_fin}")
+    if "fecha_fin" in kwargs:
+        if kwargs["fecha_fin"] != "0":
+            s_fecha_fin = kwargs["fecha_fin"]
+            # print(f"s_fecha_fin antes {s_fecha_fin}")
+            # datetime_fin = convert_str_to_datetime(s_fecha_fin, "final")
+            if isinstance(s_fecha_fin, str):
+                datetime_fin = convert_str_to_datetime(s_fecha_fin, "final")
+            else:
+                datetime_fin = convert_date_to_datetime(s_fecha_fin, "final")
+            # print(f"datetime_fin despues {datetime_fin}")
+            # print(f"datetime_fin type {type(datetime_fin)}")
+
+    s_order_by_is: str = "-id"
+    if s_order == "asc":
+        s_order_by_is = "id"
+
+    if len(name) > 0:
+        if datetime_ini and datetime_fin:
+            clients = (
+                cliente.objects.filter(**kwargs_filter)
+                .filter(name__icontains=name)
+                .order_by(s_order_by_is)[:1000]
+            )
+        else:
+            clients = (
+                cliente.objects.filter(**kwargs_filter)
+                .filter(name__icontains=name)
+                .filter(created_at__range=(datetime_ini, datetime_fin))
+                .order_by(s_order_by_is)[:1000]
+            )
+    else:
+        if datetime_ini and datetime_fin:
+            clients = (
+                cliente.objects.filter(**kwargs_filter)
+                .filter(created_at__range=(datetime_ini, datetime_fin))
+                .order_by(s_order_by_is)[:1000]
+            )
+        else:
+            clients = cliente.objects.filter(**kwargs_filter).order_by(s_order_by_is)[:1000]
+    return clients
 
 
 class client_list(ListView):
@@ -90,76 +199,8 @@ class client_list(ListView):
         return context
 
     def get_queryset(self):
-        s_order: str = "asc"
-        kwargs_filter = {}
-        if "s_order" in self.kwargs:
-            s_order = self.kwargs["s_order"]
-        if "id" in self.kwargs:
-            if self.kwargs["id"] != 0:
-                kwargs_filter["id"] = self.kwargs["id"]
-        if "city_id" in self.kwargs:
-            if self.kwargs["city_id"] != 0:
-                kwargs_filter["city_id"] = self.kwargs["city_id"]
-        if "departament_id" in self.kwargs:
-            if self.kwargs["departament_id"] != 0:
-                kwargs_filter["departament_id"] = self.kwargs["departament_id"]
-        if "category_id" in self.kwargs:
-            if self.kwargs["category_id"] != 0:
-                kwargs_filter["category_id"] = self.kwargs["category_id"]
-        name: str = ""
-        if "name" in self.kwargs:
-            if self.kwargs["name"] != "0":
-                name = self.kwargs["name"]
-        s_fecha_ini: str = ""
-        datetime_ini: datetime = None
-        # print(f"datetime_ini antes {datetime_ini}")
-        if "fecha_ini" in self.kwargs:
-            if self.kwargs["fecha_ini"] != "0":
-                s_fecha_ini = self.kwargs["fecha_ini"]
-                # print(f"s_fecha_ini antes {s_fecha_ini}")
-                datetime_ini = convert_str_to_datetime(s_fecha_ini, "initial")
-                # print(f"datetime_ini despues {datetime_ini}")
-                # print(f"datetime_ini type {type(datetime_ini)}")
-        s_fecha_fin: str = ""
-        datetime_fin: datetime = None
-        # print(f"datetime_fin antes {datetime_fin}")
-        if "fecha_fin" in self.kwargs:
-            if self.kwargs["fecha_fin"] != "0":
-                s_fecha_fin = self.kwargs["fecha_fin"]
-                # print(f"s_fecha_fin antes {s_fecha_fin}")
-                datetime_fin = convert_str_to_datetime(s_fecha_fin, "final")
-                # print(f"datetime_fin despues {datetime_fin}")
-                # print(f"datetime_fin type {type(datetime_fin)}")
-
-        kwargs_filter["is_active"] = 1
-
-        s_order_by_is: str = "-id"
-        if s_order == "asc":
-            s_order_by_is = "id"
-
-        if len(name) > 0:
-            if datetime_ini and datetime_fin:
-                clients = (
-                    cliente.objects.filter(**kwargs_filter)
-                    .filter(name__icontains=name)
-                    .order_by(s_order_by_is)[:1000]
-                )
-            else:
-                clients = (
-                    cliente.objects.filter(**kwargs_filter)
-                    .filter(name__icontains=name)
-                    .filter(created_at__range=(datetime_ini, datetime_fin))
-                    .order_by(s_order_by_is)[:1000]
-                )
-        else:
-            if datetime_ini and datetime_fin:
-                clients = (
-                    cliente.objects.filter(**kwargs_filter)
-                    .filter(created_at__range=(datetime_ini, datetime_fin))
-                    .order_by(s_order_by_is)[:1000]
-                )
-            else:
-                clients = cliente.objects.filter(**kwargs_filter).order_by(s_order_by_is)[:1000]
+        clients: Vector
+        clients = get_filtered_clients(self.kwargs)
         return clients
 
 
