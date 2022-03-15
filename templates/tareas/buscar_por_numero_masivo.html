@@ -1,4 +1,5 @@
 {% load static %}
+{% load i18n %}
 
 {% if form.errors %}
     <ul class="alert alert-danger">
@@ -51,6 +52,6 @@
 
 
 
-     <button class="btn btn-outline-primary my-1" id="buscar1" type="submit">Buscar</button>
+     <button class="btn btn-outline-primary my-1" id="buscar1" type="submit">{% trans "Buscar" %}</button>
 
   </form>

@@ -1,4 +1,5 @@
 {% extends 'base/base.html' %}
+{% load i18n %}
 {% load static%}
 
 {% block contentfluid %}
@@ -45,7 +46,7 @@
 									<i class="fas fa-file-excel" class="i_icono"></i>
 								</div>
 								<div class="div_texto_sub">
-									Cargar archivos masivos
+									{% trans "Cargar archivos masivos" %}
 								</div>
 							</li>
 						</ul>
@@ -58,14 +59,14 @@
 									<i class="fas fa-undo-alt" class="i_icono"></i>
 								</div>
 								<div class="div_texto_sub">
-									Volver
+									{% trans "Volver" %}
 								</div>
 							</li>
 						</ul>
 					</a>
 			</div>
       <div class="container d-flex justify-content-center titulo-BuscadorProcesos font-weight-bold" style="display:inline-block !important;max-width: max-content;">
-      		Administrador de Cargues de Archivos para Tareas Masivas
+      		{% trans "Administrador de Cargues de Archivos para Tareas Masivas" %}
       </div>
 	<hr>
 		{% include "./buscar_por_numero_cargue.html" %}
@@ -82,14 +83,14 @@
 						<thead class="table-primary">
 							<tr >
 								<th>No</th>
-								<th>Usuario</th>
-								<th>Fecha</th>
-								<th>Estado</th>
-								<th>Tipo Cargue</th>
-								<th>Archivo</th>
-								<th>Descargar</th>
-								<th>Acción</th>
-								<th>Observaciones</th>
+								<th>{% trans "Usuario" %}</th>
+								<th>{% trans "Fecha" %}</th>
+								<th>{% trans "Estado" %}</th>
+								<th>{% trans "Tipo Cargue" %}</th>
+								<th>{% trans "Archivo" %}</th>
+								<th>{% trans "Descargar" %}</th>
+								<th>{% trans "Acción" %}</th>
+								<th>{% trans "Observaciones" %}</th>
 							</tr>
 						</thead>
 						<tbody>
@@ -112,12 +113,12 @@
 									   -->
 									   <a href="{% url 'tareas:descargar_bulk_csv' cargue.id  %}" class="btn btn-primary" target="_blank">
 									   		<img  style="width: 50px;height: auto;" src="{% static 'img/informes1.png' %}">
-			                				<b>Descargar CSV</b>
+			                				<b>{% trans "Descargar CSV" %}</b>
 									   </a>
 									{% else %}
 										<button href="#" class="btn btn-primary" style="background-color: red;">
 									   		<img  style="width: 50px;height: auto;" src="{% static 'img/pdf-litigando.png' %}">
-			                				<b>No tiene CSV</b>
+			                				<b>{% trans "No tiene CSV" %}</b>
 									   </button>
 									{% endif %}
 
@@ -127,21 +128,21 @@
 									{% if cargue.masivo_id > 0 %}
 									<a href="{% url 'tareas:verUnaTarea' cargue.masivo_id  %}">
 										<button class="btn btn-success mt-1 btnTimer"
-												style="color: #fff; background-color:green;">Ver Detalle Cargue {% if "system_user" in user.username %} {{cargue.masivo_id}} {% endif %}
+												style="color: #fff; background-color:green;">{% trans "Ver Detalle Cargue" %} {% if "system_user" in user.username %} {{cargue.masivo_id}} {% endif %}
 										</button>
 									</a>
 									{% endif %}
 									{% if cargue.tipo_masivo.tiene_adjunto == 'S' %}
 									<a href="{% url 'tareas:verUnAdjunto' cargue.id  'masivo_file_id' %}">
 										<button class="btn btn-success mt-1 btnTimer"
-												style="color: #fff; background-color:green;">Ver Detalle Adjunto {% if "system_user" in user.username %} {{cargue.id}}  {% endif %}
+												style="color: #fff; background-color:green;">{% trans "Ver Detalle Adjunto" %} {% if "system_user" in user.username %} {{cargue.id}}  {% endif %}
 										</button>
 									</a>
 									{% endif %}
 									{% if cargue.estado != 'ok'  %}
 									<a href="{% url 'tareas:procesar_archivo' cargue.id  %}">
 										<button class="btn btn-success mt-1 btnTimer"
-												style="color: #fff; background-color:red;">Procesar Archivo {% if "system_user" in user.username %} {{cargue.id}}  {% endif %}
+												style="color: #fff; background-color:red;">{% trans "Procesar Archivo" %} {% if "system_user" in user.username %} {{cargue.id}}  {% endif %}
 										</button>
 									</a>
 									{% endif %}
@@ -158,7 +159,7 @@
 		            <thead>
 		                <tr>
 		                    <th scope="col" colspan="7">
-		                        No hay Archivos de Cargue
+		                        {% trans "No hay Archivos de Cargue" %}
 		                    </th>
 		                </tr>
 		            </thead>

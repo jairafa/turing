@@ -1,6 +1,9 @@
+{% load i18n static %}
 <!DOCTYPE html>
-<html lang="es">
+{% get_current_language as LANGUAGE_CODE %}{% get_current_language_bidi as LANGUAGE_BIDI %}
+<html lang="{{ LANGUAGE_CODE|default:'es-co' }}" {% if LANGUAGE_BIDI %}dir="rtl"{% endif %}>
 {% block head %}
+
   <head>
     {% load static %}
     <meta charset="utf-8">
@@ -87,7 +90,7 @@
         <center>
           <img src="{% static 'img/Cargando.gif' %}" class="gif_cargando"><br><br>
           <button class="btn btn-success gif_cargando" id="recargar" type="button">
-          Volver a intentarlo
+          {% trans 'Volver a intentarlo' %}
           </button>
         </center>
       </div>
@@ -132,9 +135,9 @@
                   <!-- Grid column -->
                   <div class="col-md-8 col-12 mt-5">
                       <p style="line-height: 1.7rem">
-                         Prueba Técnica - AITuring @2022-march
+                         {% trans 'Prueba Técnica' %} - AITuring @2022-march
                          <br>
-                         CRUD de Clientes, con cargas masivas al crear la base de datos y generar repote
+                         {% trans 'CRUD de Clientes, con cargas masivas al crear la base de datos y generar repote' %}
                          <br>
 
               <a href="https://www.linkedin.com/in/jairo-vega-lizarazo/">
@@ -155,7 +158,7 @@
           <!-- Footer Links -->
           <!-- Copyright -->
           <div class="footer-copyright text-center py-3 colorFooterEnd">
-              © 2022 Pruebas Técnicas:
+              © 2022 {% trans 'Prueba Técnica' %}:
               <a href="https://github.com/jairafa/turing">
                   https://github.com/jairafa/turing
               </a>
@@ -212,6 +215,8 @@ $(".btnTimer").click(function() {
     $(".contenido_principal").hide();
     $(".gif_cargando").show();
 });
+
+
 
 </script>
     {% block extrajs %}

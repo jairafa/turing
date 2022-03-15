@@ -1,4 +1,5 @@
 {% extends 'base/base.html' %}
+{% load i18n %}
 {% load static%}
 
 {% block contentfluid %}
@@ -58,14 +59,14 @@
 									<i class="fas fa-undo-alt" class="i_icono"></i>
 								</div>
 								<div class="div_texto_sub">
-									Volver
+									{% trans "Volver" %}
 								</div>
 							</li>
 						</ul>
 					</a>
 			</div>
       <div class="container d-flex justify-content-center titulo-BuscadorProcesos font-weight-bold" style="display:inline-block !important;max-width: max-content;">
-      		Administrador de Tareas Masivas
+      		{% trans "Administrador de Tareas Masivas" %}
       </div>
 	<hr>
 		{% include "./buscar_por_numero_masivo.html" %}
@@ -82,14 +83,14 @@
 						<thead class="table-primary">
 							<tr >
 								<th>No</th>
-								<th>Tarea</th>
-								<th>Fecha</th>
-								<th>Estado</th>
-								<th>Registro</th>
-								<th>Tipo Id</th>
-								<th>Identificador</th>
-								<th>Usuario</th>
-								<th>Resultado</th>
+								<th>{% trans "Tarea" %}</th>
+								<th>{% trans "Fecha" %}</th>
+								<th>{% trans "Estado" %}</th>
+								<th>{% trans "Registro" %}</th>
+								<th>{% trans "Tipo" %} Id</th>
+								<th>{% trans "Identificador" %}</th>
+								<th>{% trans "Usuario" %}</th>
+								<th>{% trans "Resultado" %}</th>
 							</tr>
 						</thead>
 						<tbody>
@@ -114,7 +115,7 @@
 		            <thead>
 		                <tr>
 		                    <th scope="col" colspan="7">
-		                        No hay Actuaciones Procesales
+		                        {% trans "No hay Registros" %}
 		                    </th>
 		                </tr>
 		            </thead>

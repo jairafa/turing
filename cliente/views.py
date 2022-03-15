@@ -8,6 +8,8 @@ from django.views.generic import TemplateView, ListView
 from django.contrib.auth.models import User
 from django.shortcuts import render, redirect  # noqa: F811
 from django.core.paginator import Paginator
+from django.utils.translation import gettext as _
+
 from cliente.forms import client_form, client_filter_form, client_desable_form
 from cliente.models import cliente, territorial
 from functions.dates import convert_str_to_datetime, convert_date_to_datetime
@@ -99,7 +101,7 @@ def client_filter_view(request):
     return render(
         request,
         "cliente/clients_find.html",
-        {"form": form, "title": "Búsqueda de Clientes", "error": elError},
+        {"form": form, "title": _("Búsqueda de Clientes"), "error": elError},
     )
 
 
@@ -160,10 +162,14 @@ def get_filtered_clients(kwargs: Dictionary) -> Vector:
     if s_order == "asc":
         s_order_by_is = "id"
 
+    print(f"kwargs_filter {kwargs_filter}")
+    print(f"kwargs_filter len {str(len(kwargs_filter))}")
+
     if len(name) > 0:
         if datetime_ini and datetime_fin:
             clients = (
                 cliente.objects.filter(**kwargs_filter)
+                .filter(created_at__range=(datetime_ini, datetime_fin))
                 .filter(name__icontains=name)
                 .order_by(s_order_by_is)[:1000]
             )
@@ -171,7 +177,6 @@ def get_filtered_clients(kwargs: Dictionary) -> Vector:
             clients = (
                 cliente.objects.filter(**kwargs_filter)
                 .filter(name__icontains=name)
-                .filter(created_at__range=(datetime_ini, datetime_fin))
                 .order_by(s_order_by_is)[:1000]
             )
     else:
@@ -195,7 +200,7 @@ class client_list(ListView):
 
     def get_context_data(self, **kwargs):
         context = super(client_list, self).get_context_data(**kwargs)
-        context["title"] = "Selección de Clientes"
+        context["title"] = _("Selección de Clientes")
         return context
 
     def get_queryset(self):
@@ -223,7 +228,7 @@ class client_edit(TemplateView):
         pk = self.kwargs.get("pk")
         context = super(client_edit, self).get_context_data(**kwargs)
         context["cliente"] = cliente.objects.get(id=pk)
-        context["title"] = "Detalle Cliente"
+        context["title"] = _("Detalle Cliente")
         return context
 
 
@@ -234,7 +239,7 @@ class client_create(CreateView):
 
     def get_context_data(self, **kwargs):
         context = super(client_create, self).get_context_data(**kwargs)
-        context["title"] = "Creación de Clientes"
+        context["title"] = _("Creación de Clientes")
         return context
 
     def post(self, request, *args, **kwargs):
@@ -275,7 +280,7 @@ class client_update(UpdateView):
 
     def get_context_data(self, **kwargs):
         context = super(client_update, self).get_context_data(**kwargs)
-        context["title"] = "Actualizar Cliente"
+        context["title"] = _("Actualizar Cliente")
         pk = self.kwargs.get("pk", 0)
         cliente = self.model.objects.get(id=pk)
         context["form"] = self.form_class(instance=cliente)
@@ -306,7 +311,7 @@ class client_delete(UpdateView):
 
     def get_context_data(self, **kwargs):
         context = super(client_delete, self).get_context_data(**kwargs)
-        context["title"] = "Eliminar Cliente"
+        context["title"] = _("Eliminar Cliente")
         pk = self.kwargs.get("pk", 0)
         cliente = self.model.objects.get(id=pk)
         context["form"] = self.form_class(instance=cliente)

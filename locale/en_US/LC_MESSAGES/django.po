@@ -1,0 +1,386 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2022-03-15 02:40-0500\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: .\cliente\forms.py:9
+msgid "Cliente ID"
+msgstr ""
+
+#: .\cliente\forms.py:10 .\cliente\forms.py:92 .\cliente\forms.py:121
+#: .\cliente\models.py:7 .\cliente\models.py:19 .\tareas\models.py:32
+#: .\templates\cliente\clients_detail.html:58
+#: .\templates\cliente\clients_list.html:82
+msgid "Nombre"
+msgstr "Name"
+
+#: .\cliente\forms.py:16
+msgid "Departamentos"
+msgstr "Departaments"
+
+
+#: .\cliente\forms.py:20 .\cliente\forms.py:72
+msgid "Categorias"
+msgstr "Categorys"
+
+#: .\cliente\forms.py:25
+msgid "Fecha Crea Inicio"
+msgstr "Create Start Date"
+
+#: .\cliente\forms.py:28
+msgid "Fecha Crea Fin"
+msgstr "Create End Date"
+
+#: .\cliente\forms.py:31
+msgid "Ordenamiento por id"
+msgstr "Sort by id"
+
+
+#: .\cliente\forms.py:69
+msgid "Ciudades"
+msgstr "Cities"
+
+#: .\cliente\forms.py:93 .\cliente\forms.py:122
+#: .\templates\cliente\clients_detail.html:59
+#: .\templates\cliente\clients_list.html:85
+msgid "Categoría"
+msgstr "Category"
+
+
+#: .\cliente\forms.py:95 .\cliente\forms.py:124
+#: .\templates\cliente\clients_detail.html:78
+#: .\templates\cliente\clients_list.html:84
+msgid "Departamento"
+msgstr "Departament"
+
+
+#: .\cliente\forms.py:96 .\cliente\forms.py:125
+#: .\templates\cliente\clients_detail.html:77
+#: .\templates\cliente\clients_list.html:83
+msgid "Ciudad"
+msgstr "City"
+
+
+#: .\cliente\models.py:8 .\cliente\models.py:40 .\cliente\models.py:78
+msgid "Fecha de creación"
+msgstr "Creation date"
+
+#: .\cliente\models.py:9 .\cliente\models.py:41 .\cliente\models.py:79
+msgid "Fecha de actualización"
+msgstr "Update date"
+
+#: .\cliente\models.py:38 .\templates\tareas\lista_masivos.html:89
+msgid "Tipo"
+msgstr "Type"
+
+#: .\cliente\views.py:104
+msgid "Búsqueda de Clientes"
+msgstr "Customer Search"
+
+#: .\cliente\views.py:200
+msgid "Selección de Clientes"
+msgstr "Client Selection"
+
+#: .\cliente\views.py:228
+msgid "Detalle Cliente"
+msgstr "Customer Detail"
+
+#: .\cliente\views.py:239
+msgid "Creación de Clientes"
+msgstr "Customer Creation"
+
+#: .\cliente\views.py:280
+msgid "Actualizar Cliente"
+msgstr "Update Client"
+
+#: .\cliente\views.py:311
+msgid "Eliminar Cliente"
+msgstr "Delete Client"
+
+#: .\tareas\forms.py:18
+msgid "Numero"
+msgstr "Number"
+
+#: .\tareas\forms.py:25
+msgid "Archivo csv/txt"
+msgstr "csv/txt file"
+
+#: .\tareas\forms.py:67
+msgid "No. Cargue"
+msgstr "No. Charge"
+
+#: .\tareas\forms.py:68
+msgid "Cargue"
+msgstr "Charge"
+
+#: .\tareas\forms.py:69
+msgid "Archivo a Procesar"
+msgstr "File to Process"
+
+#: .\tareas\forms.py:75
+msgid "Cargar Archivos Pdf/zip"
+msgstr "Upload PDF/Zip Files"
+
+#: .\tareas\models.py:8 .\tareas\models.py:37
+#: .\templates\tareas\lista_masivos.html:86
+msgid "Tarea"
+msgstr "Task"
+
+#: .\tareas\models.py:9
+msgid "registro"
+msgstr "Register"
+
+#: .\tareas\models.py:10 .\templates\tareas\lista_masivos.html:92
+msgid "Resultado"
+msgstr "Result"
+
+#: .\tareas\models.py:11 .\tareas\models.py:49 .\tareas\models.py:82
+#: .\templates\tareas\lista_adjuntos.html:89
+#: .\templates\tareas\lista_cargues.html:86
+#: .\templates\tareas\lista_masivos.html:86
+msgid "Fecha"
+msgstr "Date"
+
+
+#: .\tareas\models.py:12 .\tareas\models.py:50 .\tareas\models.py:83
+#: .\templates\tareas\lista_adjuntos.html:91
+#: .\templates\tareas\lista_cargues.html:88
+#: .\templates\tareas\lista_masivos.html:88
+msgid "Estado"
+msgstr "State"
+
+#: .\tareas\models.py:13 .\tareas\models.py:81
+#: .\templates\tareas\lista_adjuntos.html:89
+#: .\templates\tareas\lista_cargues.html:86
+#: .\templates\tareas\lista_masivos.html:92
+msgid "Usuario"
+msgstr "User"
+
+#: .\tareas\models.py:14 .\templates\tareas\lista_masivos.html:91
+msgid "Identificador"
+msgstr "Identifier"
+
+#: .\tareas\models.py:15
+msgid "Tipo Identificador"
+msgstr "Identifier Type"
+
+#: .\tareas\models.py:38
+msgid "Estructura"
+msgstr "Structure"
+
+#: .\tareas\models.py:52 .\tareas\models.py:84
+#: .\templates\tareas\lista_adjuntos.html:91
+#: .\templates\tareas\lista_cargues.html:92
+msgid "Observaciones"
+msgstr "Observations"
+
+#: .\tareas\models.py:53 .\tareas\models.py:85
+#: .\templates\tareas\lista_adjuntos.html:93
+#: .\templates\tareas\lista_cargues.html:90
+msgid "Archivo"
+msgstr "File"
+
+#: .\tareas\views.py:210
+msgid "Cargues Masivos"
+msgstr "Massive Uploads"
+
+#: .\templates\base\base.html:93
+msgid "Volver a intentarlo"
+msgstr "Try again"
+
+#: .\templates\base\base.html:138 .\templates\base\base.html:161
+msgid "Prueba Técnica"
+msgstr "Technical Test"
+
+#: .\templates\base\base.html:140
+msgid "CRUD de Clientes, con cargas masivas al crear la base de datos y generar repote"
+msgstr "Customer CRUD, with massive loads when creating the database and generating report"
+#: .\templates\base\change_language.html:2
+#: .\templates\base\change_language_2.html:2
+msgid "Cambiar lenguaje"
+msgstr "Change language"
+
+#: .\templates\base\elError.html:10
+msgid "Lo sentimos, pero no es permitido realizar esta acción."
+msgstr "We are sorry, but it is not allowed to perform this action."
+
+#: .\templates\base\index.html:57
+msgid "Bienvenidos"
+msgstr "Welcome"
+
+#: .\templates\base\index.html:67
+msgid "Filtro Clientes"
+msgstr "Filter Clients"
+
+#: .\templates\base\index.html:80
+msgid "Lista Clientes"
+msgstr "Client List"
+
+#: .\templates\base\index.html:93
+msgid "Cargar Archivos Masivos"
+msgstr "Upload Massive Files"
+
+#: .\templates\base\nav.html:42 .\templates\base\nav.html:57
+msgid "Cerrar Sesión"
+msgstr "Sign off"
+
+
+#: .\templates\cliente\clients_detail.html:60
+#: .\templates\cliente\clients_list.html:86
+msgid "Creador"
+msgstr "Creator"
+
+
+#: .\cliente\forms.py:94 .\cliente\forms.py:123
+#: .\templates\cliente\clients_detail.html:79
+msgid "Pais"
+msgstr "Country"
+
+
+#: .\templates\cliente\clients_list.html:86
+msgid "Fecha Creación"
+msgstr "Creation date"
+
+#: .\templates\cliente\clients_list.html:87
+msgid "Acciones"
+msgstr "Actions"
+
+#: .\templates\cliente\clients_list.html:122
+msgid "La búsqueda  realizada con los parametro ingresados no arrojan resultados."
+msgstr "The search carried out with the entered parameters does not yield results."
+
+#: .\templates\tareas\buscar_por_numero_cargue.html:55
+#: .\templates\tareas\buscar_por_numero_masivo.html:55
+msgid "Buscar"
+msgstr "Find"
+
+#: .\templates\tareas\cargar_archivo.html:66
+msgid "Consultar Ultimos Cargues"
+msgstr "Check Last Charges"
+
+#: .\templates\tareas\cargar_archivo.html:114
+msgid "Tipo de Cargue"
+msgstr "Check Last Charges"
+
+#: .\templates\tareas\cargar_archivo.html:125
+msgid "Estructura del Archivo de Cargue:"
+msgstr "Upload File Structure:"
+
+#: .\templates\tareas\cargar_archivo.html:126
+msgid "Delimitador punto y coma"
+msgstr "Semicolon delimiter"
+
+#: .\templates\tareas\cargar_archivo.html:127
+msgid "La primera fila del archivo no se va a procesar, contiene los  títulos de los campos."
+msgstr "The first row of the file will not be processed, it contains the titles of the fields."
+
+#: .\templates\tareas\cargar_archivo.html:201
+#: .\templates\tareas\lista_adjuntos.html:62
+#: .\templates\tareas\lista_cargues.html:62
+#: .\templates\tareas\lista_masivos.html:62
+msgid "Volver"
+msgstr "Return"
+
+#: .\templates\tareas\cargar_archivo.html:213
+msgid "Cargar"
+msgstr "Load"
+
+#: .\templates\tareas\lista_adjuntos.html:68
+msgid "Administrador Masivos Adjuntos"
+msgstr "Massive Attachment Manager"
+
+#: .\templates\tareas\lista_adjuntos.html:83
+msgid "Adjunto"
+msgstr "Attach"
+
+
+#: .\templates\tareas\lista_adjuntos.html:85
+msgid "Masivo"
+msgstr "Massive"
+
+#: .\templates\tareas\lista_adjuntos.html:86
+msgid "Solicitud"
+msgstr "Request"
+
+#: .\templates\tareas\lista_adjuntos.html:87
+#: .\templates\tareas\lista_masivos.html:88
+msgid "Registro"
+msgstr "Record"
+
+#: .\templates\tareas\lista_adjuntos.html:118
+msgid "No hay Adjuntos"
+msgstr "no attachments"
+
+#: .\templates\tareas\lista_cargues.html:48
+msgid "Cargar archivos masivos"
+msgstr "Load massive files"
+
+#: .\templates\tareas\lista_cargues.html:68
+msgid "Administrador de Cargues de Archivos para Tareas Masivas"
+msgstr "File Upload Manager for Bulk Tasks"
+
+#: .\templates\tareas\lista_cargues.html:88
+msgid "Tipo Cargue"
+msgstr "Type load"
+
+#: .\templates\tareas\lista_cargues.html:90
+msgid "Descargar"
+msgstr "Download"
+
+#: .\templates\tareas\lista_cargues.html:91
+msgid "Acción"
+msgstr "Action"
+
+#: .\templates\tareas\lista_cargues.html:116
+msgid "Descargar CSV"
+msgstr "Download CSV"
+
+#: .\templates\tareas\lista_cargues.html:121
+msgid "No tiene CSV"
+msgstr "It don't have CSV"
+
+#: .\templates\tareas\lista_cargues.html:131
+msgid "Ver Detalle Cargue"
+msgstr ""
+
+#: .\templates\tareas\lista_cargues.html:138
+msgid "Ver Detalle Adjunto"
+msgstr "See Load Detail"
+
+#: .\templates\tareas\lista_cargues.html:145
+msgid "Procesar Archivo"
+msgstr "Process File"
+
+#: .\templates\tareas\lista_cargues.html:162
+msgid "No hay Archivos de Cargue"
+msgstr "No Files Upload"
+
+#: .\templates\tareas\lista_masivos.html:68
+msgid "Administrador de Tareas Masivas"
+msgstr "Mass Task Manager"
+
+#: .\templates\tareas\lista_masivos.html:117
+msgid "No hay Registros"
+msgstr "No Records"
+
+#: .\turing\settings.py:132
+msgid "Inglés"
+msgstr "English"
+
+#: .\turing\settings.py:133
+msgid "Español"
+msgstr "Spanish"

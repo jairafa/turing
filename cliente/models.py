@@ -1,11 +1,16 @@
 from django.db import models
 from django.contrib.auth.models import User
+from django.utils.translation import gettext_lazy as _
 
 
 class category(models.Model):
-    name = models.CharField(max_length=50)
-    created_at = models.DateTimeField("Fecha de creación", auto_now_add=True, auto_now=False)
-    updated_at = models.DateTimeField("Fecha de actualización", auto_now_add=False, auto_now=True)
+    name = models.CharField(max_length=50, verbose_name=_("Nombre"))
+    created_at = models.DateTimeField(
+        verbose_name=_("Fecha de creación"), auto_now_add=True, auto_now=False
+    )
+    updated_at = models.DateTimeField(
+        verbose_name=_("Fecha de actualización"), auto_now_add=False, auto_now=True
+    )
 
     class Meta:
         ordering = ["name"]
@@ -15,7 +20,7 @@ class category(models.Model):
 
 
 class territorial(models.Model):
-    name = models.CharField(max_length=50)
+    name = models.CharField(max_length=50, verbose_name=_("Nombre"))
     parent = models.ForeignKey(
         "self", models.DO_NOTHING, related_name="dad", blank=True, null=True
     )
@@ -34,10 +39,14 @@ class territorial(models.Model):
         ),
     )  # noqa
     territorial_type = models.CharField(
-        "Tipo Territorio", max_length=12, choices=territorial_list, default="C"
+        verbose_name=_("Tipo"), max_length=12, choices=territorial_list, default="C"
     )
-    created_at = models.DateTimeField("Fecha de creación", auto_now_add=True, auto_now=False)
-    updated_at = models.DateTimeField("Fecha de actualización", auto_now_add=False, auto_now=True)
+    created_at = models.DateTimeField(
+        verbose_name=_("Fecha de creación"), auto_now_add=True, auto_now=False
+    )
+    updated_at = models.DateTimeField(
+        verbose_name=_("Fecha de actualización"), auto_now_add=False, auto_now=True
+    )
 
     class Meta:
         ordering = ["name"]
@@ -74,8 +83,12 @@ class cliente(models.Model):
         ),
     )
     is_active = models.PositiveSmallIntegerField(choices=active, default=1)
-    created_at = models.DateTimeField("Fecha de creación", auto_now_add=True, auto_now=False)
-    updated_at = models.DateTimeField("Fecha de actualización", auto_now_add=False, auto_now=True)
+    created_at = models.DateTimeField(
+        verbose_name=_("Fecha de creación"), auto_now_add=True, auto_now=False
+    )
+    updated_at = models.DateTimeField(
+        verbose_name=_("Fecha de actualización"), auto_now_add=False, auto_now=True
+    )
 
     class Meta:
         ordering = ["name"]

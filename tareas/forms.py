@@ -5,6 +5,7 @@ from django.conf import settings
 from django.contrib.admin import widgets
 from django.forms import ModelForm
 from django.utils import timezone
+from django.utils.translation import gettext_lazy as _
 
 from datetime import date
 from datetime import timedelta
@@ -14,14 +15,14 @@ from tareas.views import *
 
 
 class buscarPorNumero_nav_form(forms.Form):
-    pk = forms.IntegerField(required=False, label="Numero")
+    pk = forms.IntegerField(required=False, label=_("Numero"))
 
 
 class cargarArchivoMasivo_Form(forms.ModelForm):
     archivo = forms.FileField(
         widget=forms.FileInput(attrs={"accept": "text/csv"}),
         required=True,
-        label="Archivo csv/txt",
+        label=_("Archivo csv/txt"),
     )
 
     def __init__(self, *args, **kwargs):
@@ -63,15 +64,15 @@ class cargarArchivoMasivo_Form(forms.ModelForm):
         ]
 
         labels = {
-            "id": "No. Cargue",
-            "tipo_masivo": "Cargue",
-            "archivo": "Archivo a Procesar",
+            "id": _("No. Cargue"),
+            "tipo_masivo": _("Cargue"),
+            "archivo": _("Archivo a Procesar"),
         }
 
 
 class multiples_archivos_form(forms.Form):
     archivos = forms.FileField(
-        label="Cargar Archivos Pdf/zip",
+        label=_("Cargar Archivos Pdf/zip"),
         widget=forms.ClearableFileInput(
             attrs={"multiple": True, "accept": "application/pdf, application/x-zip-compressed"}
         ),

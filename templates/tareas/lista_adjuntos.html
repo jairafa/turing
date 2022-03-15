@@ -1,4 +1,5 @@
 {% extends 'base/base.html' %}
+{% load i18n %}
 {% load static%}
 
 {% block contentfluid %}
@@ -58,14 +59,14 @@
 									<i class="fas fa-undo-alt" class="i_icono"></i>
 								</div>
 								<div class="div_texto_sub">
-									Volver
+									{% trans "Volver" %}
 								</div>
 							</li>
 						</ul>
 					</a>
 			</div>
       <div class="container d-flex justify-content-center titulo-BuscadorProcesos font-weight-bold" style="display:inline-block !important;max-width: max-content;">
-      		Administrador Masivos Adjuntos
+      		{% trans "Administrador Masivos Adjuntos" %}
       </div>
 	<hr>
 	<hr>
@@ -80,16 +81,16 @@
 
 						<thead class="table-primary">
 							<tr >
-								<th>NoAdjunto</th>
-								<th>NoCsv</th>
-								<th>NoMasivo</th>
-								<th>NoSolicitud</th>
-								<th>Registro</th>
-								<th>Usuario</th>
-								<th>Fecha</th>
-								<th>Estado</th>
-								<th>Observaciones</th>
-								<th>Archivo</th>
+								<th>N°{% trans "Adjunto" %}</th>
+								<th>N° Csv</th>
+								<th>N°{% trans "Masivo" %}</th>
+								<th>N°{% trans "Solicitud" %}</th>
+								<th>{% trans "Registro" %}</th>
+								<th>{% trans "Usuario" %}</th>
+								<th>{% trans "Fecha" %}</th>
+								<th>{% trans "Estado" %}</th>
+								<th>{% trans "Observaciones" %}</th>
+								<th>{% trans "Archivo" %}</th>
 							</tr>
 						</thead>
 						<tbody>
@@ -115,7 +116,7 @@
 		            <thead>
 		                <tr>
 		                    <th scope="col" colspan="7">
-		                        No hay Adjuntos
+		                        {% trans "No hay Adjuntos" %}
 		                    </th>
 		                </tr>
 		            </thead>

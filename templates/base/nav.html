@@ -1,5 +1,5 @@
 {% load static %}
-
+{% load i18n %}
 
 <nav class="navbar navbar-expand-md bg-light justify-content-between " style="width: 100%; z-index: 9999;position: fixed;left: 0;">
 	<div class="container-fluid">
@@ -25,6 +25,7 @@
 	           		<button id="msg-radicacion" type="button" style="outline: none; background: transparent; border: none; cursor: pointer; margin-left: 30px;" class="nav-link btn-litiradicacion">
 	           			<!-- <img v-bind:title="message" style="width: 3em; height: auto;" src="{ static 'img/icono radicacion.png' }">-->
 	           		</button>
+	           		{% include 'base/change_language.html' %}
 	           	</li>
 	        </ul>
 	    </div>
@@ -38,7 +39,7 @@
 	            	<div class="col-8">
 	            		<a class="abrir-cerrar d-block d-xs-block d-md-none btnTimer" href="{% url 'logout' %}">
 	                        <button class="btn btn-outline-primary" type="button" style="background-color: red; color: #fff;    margin: 0.5em;">
-	                           Cerrar Sesión
+	                           {% trans "Cerrar Sesión" %}
 	                        </button>
 	                    </a>
 	            	</div>
@@ -53,7 +54,7 @@
                 <ul class="nav navbar-nav ml-auto right_j">
                     <a class="abrir-cerrar d-none d-md-block d-sm-none btnTimer" href="{% url 'logout' %}">
                         <button class="btn btn-outline-primary btnTexto" type="button" style="background-color: red; color: #fff;">
-                            Cerrar Sesión
+                            {% trans "Cerrar Sesión" %}
                         </button>
                     </a>
 

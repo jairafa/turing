@@ -1,5 +1,5 @@
 {% extends 'base/base.html' %}
-
+{% load i18n %}
 
 {% block content %}
 
@@ -54,7 +54,8 @@
       <div class="jumbotron jumbotron-fluid rounded">
         <div class="container" style="    max-width: 100%;">
           <h1 class="display-4 text-center">
-            ¡Bienvenidos!
+            ¡{% trans "Bienvenidos" %}!
+
           </h1>
           <div class="container d-flex justify-content-center" style="    max-width: 100%;">
             <ul class="flex-container">
@@ -63,7 +64,7 @@
                 <li class="item" id="item4">
                   <a class="nav-link btnTimer" href="{% url 'cliente:client_filter' %}">
                     <div class=" padding_blocks">
-                      <p class="texto-iconos text-center"> Filtro Clientes  </p><br><br>
+                      <p class="texto-iconos text-center"> {% trans "Filtro Clientes" %}  </p><br><br>
                       <div class="div_icono">
                         <center>
                         <i class="fas fa-search" class="i_icono"></i>
@@ -76,7 +77,7 @@
                 <li class="item" id="item4">
                   <a class="nav-link btnTimer" href="{% url 'cliente:client_list_class' s_order='asc' %}">
                     <div class=" padding_blocks">
-                      <p class="texto-iconos text-center"> Lista Clientes  </p><br><br>
+                      <p class="texto-iconos text-center"> {% trans "Lista Clientes" %}  </p><br><br>
                       <div class="div_icono">
                         <center>
                         <i class="fas fa-balance-scale" class="i_icono"></i>
@@ -89,7 +90,7 @@
                 <li class="item" id="item4">
                   <a class="nav-link btnTimer" href="{% url 'tareas:cargar_archivos' %}">
                     <div class=" padding_blocks">
-                      <p class="texto-iconos text-center"> Cargar Archivos Masivos  </p><br><br>
+                      <p class="texto-iconos text-center"> {% trans "Cargar Archivos Masivos" %}  </p><br><br>
                       <div class="div_icono">
                         <center>
                         <i class="fab fa-cloudscale" class="i_icono"></i>

@@ -1,4 +1,5 @@
 {% extends 'base/base.html' %}
+{% load i18n %}
 {% load static%}
 
 {%block title%}{{title}}{% endblock %}
@@ -54,9 +55,9 @@
     <thead>
       <tr>
         <th>Id</th>
-        <th>Nombre</th>
-        <th>Categoria</th>
-        <th>Creador</th>
+        <th>{% trans "Nombre" %}</th>
+        <th>{% trans "Categoría" %}</th>
+        <th>{% trans "Creador" %}</th>
       </tr>
     </thead>
     <tbody>
@@ -73,9 +74,9 @@
     top: -20px;">
     <thead>
       <tr>
-        <th>Ciudad</th>
-        <th>Departamento</th>
-        <th>Pais</th>
+        <th>{% trans "Ciudad" %}</th>
+        <th>{% trans "Departamento" %}</th>
+        <th>{% trans "Pais" %}</th>
       </tr>
     </thead>
     <tbody>

@@ -1,10 +1,7 @@
 from django.views.generic import ListView, TemplateView, CreateView
-
 from django.contrib.auth.mixins import LoginRequiredMixin
-
 from django.views.generic.edit import FormMixin
 from django.http import Http404
-
 from django.conf import settings
 import pytz
 import datetime as dt
@@ -13,8 +10,8 @@ from django.db import connection
 from django.contrib.auth.models import User
 from django.contrib import auth
 from django.shortcuts import render, redirect
-
 from django.db.models import Max
+from django.utils.translation import gettext as _
 
 from tareas.models import masivos, masivos_file, tipo_masivo, masivos_file_adjunto
 from tareas.forms import (
@@ -22,7 +19,6 @@ from tareas.forms import (
     buscarPorNumero_nav_form,
     multiples_archivos_form,
 )
-
 from processes.clientes_bulk import clientes_bulk
 from processes.cliente_dummy import get_system_user
 
@@ -118,7 +114,8 @@ class ListarCarguesView(FormListView):
 
     def get_queryset(self):
 
-        # print(self)
+        print("a" * 10)
+        print(self)
 
         try:
             # usuario_id = self.kwargs['usuario_id']
@@ -135,9 +132,15 @@ class ListarCarguesView(FormListView):
                 cargueId = self.request.GET.get("pk")
                 # usuario_id = self.request.GET.get('usuario_id')
                 if not cargueId or self.kwargs:
-                    cargueId = self.kwargs["pk"]
-                # if not usuario_id or self.kwargs:
-                #   usuario_id = self.kwargs['usuario_id']
+                    # print("b" * 10)
+                    # print(self.kwargs)
+                    if "pk" in self.kwargs:
+                        cargueId = self.kwargs["pk"]
+                    else:
+                        cargueId = 0
+                if not usuario_id:
+                    if "usuario_id" in self.kwargs:
+                        usuario_id = self.kwargs["usuario_id"]
             elif self.kwargs:
                 cargueId = self.kwargs["pk"]
             # print(f"usuario_id {usuario_id}")
@@ -211,7 +214,9 @@ class cargarArchivoMasivos(CreateView):
         archivosForm = multiples_archivos_form()
 
         return self.render_to_response(
-            self.get_context_data(form=form, archivosForm=archivosForm, titulo="Cargues Masivos")
+            self.get_context_data(
+                form=form, archivosForm=archivosForm, titulo=_("Cargues Masivos")
+            )
         )
 
     def post(self, request, *args, **kwargs):
