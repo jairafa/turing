@@ -63,7 +63,8 @@ La aplicación esta disponible para los siguientes Idiomas:
 - Abra una terminal
 - Cree una carpeta para el proyecto
 - Descargue en la carpeta el proyecto desde github, ya sea desde un archivo zip (descomprímirlo) o por github
-https://github.com/jairafa/turing.git
+>git remote add origin https://github.com/jairafa/turing.git
+>git pull origin main
 - Cree un entorno virtual y activelo
 - Ubiquese en la carpeta raiz del proyecto, en ésta debe encontrar el archivo manage.py
 turing\manage.py
