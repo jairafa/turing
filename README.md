@@ -66,10 +66,15 @@ La aplicación esta disponible para los siguientes Idiomas:
 > - git remote add origin https://github.com/jairafa/turing.git
 > - git pull origin main
 - Cree un entorno virtual y activelo
+> - python -m pip install virtualenv
+> - python -m venv ev_turing
 - Ubiquese en la carpeta raiz del proyecto, en ésta debe encontrar el archivo manage.py
 turing\manage.py
 - Instale los componentes
 > pip install -r requirements.txt
+- Correr migraciones
+> - manage.py makemigrations
+> - manage.py migrate
 
 # Ejecución
 - Servidor
