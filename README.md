@@ -19,18 +19,18 @@ generate_cliente(190000)
 Se tiene una pagina para aplicar diferentes filtros de busqueda de clientes
 Para ingresar, seleccione la opción filtros clientes.
 ### 2.1 Filtros por:
-> No Cliente, Nombre, fecha inicio y fin de creación de clientes, territorios.
-> Se puede seleccionar el modo de ordenamiento, por identificador del  cliente: Asencente/Descendente
+> - No Cliente, Nombre, fecha inicio y fin de creación de clientes, territorios.
+> - Se puede seleccionar el modo de ordenamiento, por identificador del  cliente: Asencente/Descendente
 ### 2.2 Informe de clientes
 Presenta los datos asociados al cliente
 - Permite la opción de presentar los datos de las siguiente formas:
-> Generar un xls
-> Ver los datos por pantalla
+> - Generar un xls
+> - Ver los datos por pantalla
 ## 3. Administrador de Clientes
 - El administrador de clientes permite realizar las siguientes operaciones:
-> Consultar
-> Actualizar
-> Crear
+> - Consultar
+> - Actualizar
+> - Crear
 > Eliminar (La eliminación es lógica)
 - Ingreso al administrador de clientes
 > Desde el menú principal, opción:
@@ -63,8 +63,8 @@ La aplicación esta disponible para los siguientes Idiomas:
 - Abra una terminal
 - Cree una carpeta para el proyecto
 - Descargue en la carpeta el proyecto desde github, ya sea desde un archivo zip (descomprímirlo) o por github
->git remote add origin https://github.com/jairafa/turing.git
->git pull origin main
+> - git remote add origin https://github.com/jairafa/turing.git
+> - git pull origin main
 - Cree un entorno virtual y activelo
 - Ubiquese en la carpeta raiz del proyecto, en ésta debe encontrar el archivo manage.py
 turing\manage.py
