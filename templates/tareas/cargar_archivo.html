@@ -1,0 +1,417 @@
+{% extends 'base/base.html' %}
+{% load static%}
+
+{% block title %}
+	Cargar Archivo
+{% endblock %}
+
+{% block content %}
+<style type="text/css">
+  textarea {
+    resize: none;
+    width: 35em;
+    height:18em;
+    border-radius: 1em;
+    background-color: #008fca2b;
+    padding: 2em;
+}
+@media (max-width: 1120px) {
+  textarea {
+    width: 15em;
+  }
+}
+input {
+    box-sizing: border-box;
+    width: 100%;
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset;
+    width: 15em;
+    height: 2em;
+    border-radius: 9px;
+    border: 1px solid #59688e;
+    padding: 14px;
+}
+
+input[type="file"]{
+  display: none;
+}
+.form-group>div>img {
+    position: absolute;
+    right: 40px;
+    top: 6px;
+}
+.div_li_ul_a{
+      float: left;
+    }
+    .i_icono{
+      color: #fff;
+      font-size: 2.5em;
+
+    }
+
+    ul{
+      list-style:none
+    }
+    .div_texto_sub {
+        margin: 0.7em 3em 0em 0em;
+        width: 100%;
+    }
+</style>
+ <div class="div_container_principal">
+<div class="container d-flex justify-content-center titulo-BuscadorProcesos font-weight-bold">{{titulo}} </div>
+<br>
+<div class="row justify-content-center" >
+<br>
+<!-- <a class="btn btn-primary btnTimer" href="{ url 'tareas:verCargues' usuario_id=request.user.username }">Consultar Ultimos Cargues </a> -->
+<a class="btn btn-primary btnTimer" href="{% url 'tareas:verCargues' usuario_id='system_user' %}">Consultar Ultimos Cargues </a>
+    <div class = "col-11">
+      <div class="card">
+        <div class="card-body">
+        {% if form.errors %}
+        <ul class="alert alert-danger">
+        {% for field in form %}
+            {% for error in field.errors %}
+                <li>
+                  {% if field != '__all__' %}
+                    <strong>{{ field.label }}:</strong>
+                  {% endif %}
+                  {{ error }}
+                </li>
+            {% endfor %}
+        {% endfor %}
+        </ul>
+        {% endif %}
+
+
+    {% if archivosForm.errors %}
+        <ul class="alert alert-danger">
+        {% for field in archivosForm %}
+            {% for error in field.errors %}
+                <li>
+                  {% if field != '__all__' %}
+                    <strong>{{ field.label }}:</strong>
+                  {% endif %}
+                  {{ error }}
+                </li>
+            {% endfor %}
+        {% endfor %}
+        </ul>
+    {% endif %}
+
+         <form method="POST" id = "form"
+               data-estructura-url="{% url 'tareas:ajax_estructura' %}"
+               data-adjunto-url="{% url 'tareas:ajax_adjunto' %}"
+               enctype="multipart/form-data"
+               onsubmit="return checkForm(this);">
+         	{% csrf_token %}
+
+    {# Include the hidden fields #}
+    {% for hidden in form.hidden_fields %}
+        {{ hidden }}
+    {% endfor %}            <div class="container">
+                  <div class="form-group row d-flex justify-content-center">
+                      <label class="col-xl-2 col-lg-2 col-md-4 col-sm-8 style-Font" for="formGroupExampleInput">
+                          Tipo de Cargue
+                      </label>
+                      <div class="col-xl-3 col-lg-3 col-md-6 col-sm-8 mt-1">
+                        <div class="select ">
+                          {{form.tipo_masivo}}
+                        </div>
+                      </div>
+                  </div>
+                  <hr>
+                  <center>
+                    <div>
+                        <label style="color:green;" class="col-form-label">
+                           Estructura del Archivo de Cargue:
+                           <span class="badge badge-success"> Delimitador punto y coma (;)</span>
+                           La primera fila del archivo no se va a procesar, contiene los  títulos de los campos.
+                        </label>
+                    </div>
+
+                  <div id="div_id_tipo_masivo">
+                    <div id="div_id_mensaje_estructura">
+                        <label style="color:blue;" class="col-form-label">
+                           {{ estructura }}
+                        </label>
+                    </div>
+
+                  </div>
+                  </center>
+                </div>
+
+                {{form.archivo}}
+                  <div class="form-group row d-flex justify-content-center">
+                      <label class="col-xl-2 col-lg-2 col-md-4 col-sm-8 style-Font " for="id_archivo" id="label_input_file">
+                        {{form.archivo.label}}
+
+                        <img src="{% static 'img/inclusion.png' %}" style="cursor: pointer;width: 129px;"   id="cargar_archivo_a">
+                      </label>
+                </div>
+              </div>
+              <div class="row d-flex justify-content-center">
+                <center>
+                  <div id="nombre_archivo"></div><br>
+                </center>
+              </div>
+
+    <div id = "div_id_adjunto_crear_solicitud">
+         <div class="form-group row d-flex justify-content-center">
+                  <label style="color:green;" class="row-form-label">
+                     Los archivos
+                     <span class="badge badge-success"> PDF </span>
+                     se imprimirán y se radicarán.
+                  </label>
+                  <label style="color:blue;" class="row-form-label">
+                     Los archivos
+                     <span class="badge badge-success"> ZIP </span>
+                     Se grabarán en un CD y se adjuntarán.
+                  </label>
+
+                  <label style="color:#475D60;" class="row-form-label">
+                     El archivo debe incluir al inicio del nombre el numero de la fila (seguido de un guión bajo) al cual se le debe asociar la solicitud de radicación a crear. Ej:
+                  </label>
+
+                  <label style="color:#475D60;" class="row-form-label">
+                     <span class="badge badge-success"> FILA_nombreArchivo.pdf </span>
+                     2_nombreArchivo.pdf | 2_nombreArchivo.zip
+                  </label>
+          </div>
+
+          <div class="row mb-1 justify-content-center" style="width: 100%;" >
+              <div id = "div_id_archivos">
+              <label for="id_archivos">
+                 <img  src="{% static 'img/inclusion.png' %}" style="cursor: pointer;width:7em;"   id="cargar_archivo_a">
+                  {{archivosForm}}
+                  <div id="nombre_id_archivos"></div>
+              </label>
+              </div>
+         </div>
+      </div>
+
+              <div class="row d-flex justify-content-center" id="btnEnviar">
+                <br><br>
+                 <a href="javascript:history.go(-1)" class="btn btn-primary btnTimer">
+                    <ul style="margin: 0;float: left;color: #fff;width:auto;max-width:auto;padding-inline-start: 0px;padding-right: 1em;">
+                      <li class="nav-item active">
+                        <div class="div_li_ul_a">
+                          <i class="fas fa-undo-alt" class="i_icono"></i>
+                        </div>
+                        <div class="div_texto_sub">
+                          Volver
+                        </div>
+                      </li>
+                    </ul>
+                  </a>
+                    &nbsp;&nbsp;
+                  <button type="submit" class="btn btn-success mr-3">
+                    <ul style="margin: 0;float: left;color: #fff;width:auto;max-width:auto;padding-inline-start: 0px;padding-right: 1em;">
+                        <li class="nav-item active">
+                          <div class="div_li_ul_a">
+                            <i class="fas fa-search" class="i_icono"></i>
+                          </div>
+                          <div class="div_texto_sub">
+                            Cargar
+                          </div>
+                        </li>
+                    </ul>
+                    <br><br>
+                  </button>
+              </div>
+              <br><br>
+         </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endblock %}
+
+{% block extrajs %}
+
+<script>
+//adjuntoMostrar();
+adjuntoOcultar();
+function adjuntoMostrar(){
+  alert('adjuntoMostrar');
+  document.getElementById('div_id_adjunto_crear_solicitud').style.display = 'block';
+}
+function adjuntoOcultar(){
+  //alert('adjuntoOcultar');
+  document.getElementById('div_id_adjunto_crear_solicitud').style.display = 'none';
+}
+
+</script>
+
+<script>
+
+    $(function(){
+      toSelect2($('#id_tipo_masivo'),"Seleccione un Tipo de Cargue")
+    });
+
+    $("#id_tipo_masivo").change(function () {
+      //alert('Entro al script')
+      campo = 'estructura'
+      var id_tipo_masivo = $("#id_tipo_masivo").val();
+      //alert ('id_tipo_masivo ' + id_tipo_masivo)
+
+      if (id_tipo_masivo > 0){//Con Proceso
+          var url = $("#form").attr("data-estructura-url");
+          //alert('url' + url)
+          //alert('despachoId ' + despachoId + ' url ' + url)
+
+          $.ajax({
+              url:url,
+              data: {
+                'id_tipo_masivo':id_tipo_masivo,
+                'campo': campo
+              },
+              success: function (data) {
+                $("#div_id_tipo_masivo").children("#div_id_mensaje_" + campo).remove();
+                $("#div_id_tipo_masivo").html(data);
+                //alert(data)
+              },
+              error : function(message) {
+                  console.log(message);
+              }
+          });
+
+          var url = $("#form").attr("data-adjunto-url");
+          $.ajax({
+              url:url,
+              data: {
+                'id_tipo_masivo':id_tipo_masivo,
+              },
+              success: function (data) {
+
+                var porciones = data.split(':');
+                porciones[1]; //porción3
+                //alert('data (' + data + ') clave (' + porciones [0]  + ') valor (' + porciones [1] + ')');
+
+                if (porciones [1].trim() == 'S'){
+                  //adjuntoMostrar();
+                  //alert('entra S');
+                  document.getElementById('div_id_adjunto_crear_solicitud').style.display = 'block';
+                }else{
+                  //alert('entra N');
+                  //adjuntoOcultar();
+                  document.getElementById('div_id_adjunto_crear_solicitud').style.display = 'none';
+                }
+
+
+              },
+              error : function(message) {
+                  console.log(message);
+              }
+          });
+
+
+      }
+
+      return false;
+
+    });
+</script>
+<script type="text/javascript">
+
+
+   $("form").submit(function(event){
+        $(".gif_cargando").show();
+        $(".div_container_principal").hide();
+        //event.preventDefault();
+    });
+
+
+       $("#id_archivo").change(function () {
+
+                    var fileInput = document.getElementById('id_archivo');
+                    var name = document.getElementById('id_archivo').value;
+                    name = name.substring(12);
+                    $("#nombre_archivo").html('<span class="fas fa-archive font-Tamaño"></span><b class="font-Tamaño">Nombre Archivo:<br>'+name+'</b>');
+
+                    var filePath = fileInput.value;
+                    var allowedExtensions = /(.txt|.TXT|.csv|.CSV)$/i;
+                    if(!allowedExtensions.exec(filePath)){
+                       //alert("asdf");
+
+                        swal({
+                            title: "!Tipo de archivo no valido!",
+                            text: "Por favor cargue un archivo txt/csv.",
+                            type: "error",
+                            confirmButtonText: "Aceptar",
+                            confirmButtonColor: "#647396"
+                        });
+                        fileInput.value = '';
+                        return false;
+                    }else{
+                        if (fileInput.files && fileInput.files[0]) {
+                            var reader = new FileReader();
+                            reader.onload = function(e) {
+                            };
+                            reader.readAsDataURL(fileInput.files[0]);
+
+
+                        }
+                    }
+
+     });
+    function checkForm(form){
+      //form.name="botonSinDoble".disabled = true;
+      form.botonSinDoble.disabled = true;
+      return true;
+    }
+</script>
+
+ <script>
+     $("#id_archivos").change(function () {
+          /*<MENSAJE>*/
+          $("#div_id_archivos").children("#div_id_mensaje_archivos").remove();
+          var vidFileLength = $("#id_archivos")[0].files.length;
+
+          var mensaje = "<div id='div_id_mensaje_archivos'>"
+          if (vidFileLength === 0) {
+            mensaje += "<label style='color:red;' class='col-form-label'>"
+            mensaje += "No ha seleccionado un archivo, para enviar.";
+          }else{
+            mensaje += "<label style='color:green;' class='col-form-label'>"
+            mensaje += "Recuerde que el documento se radicará en el mismo orden y tamaño de papel en el que lo está cargado. "
+            mensaje += "</label>"
+            mensaje += "<BR><label style='color:blue;' class='col-form-label'>"
+            mensaje += "Los archivos pdf se imprimirán, los que sean ZIP, se quemarán en un CD"
+          }
+          mensaje += "</label></div>"
+
+          $("#div_id_archivos").append(mensaje);
+          /*</MENSAJE>*/
+
+          var fileInput = document.getElementById('id_archivos');
+          var name = document.getElementById('id_archivos').value;
+          name = name.substring(12);
+          $("#nombre_id_archivos").html('<b class="font-Tamaño">'+name+'</b>');
+
+          var filePath = fileInput.value;
+          var allowedExtensions = /(.pdf|.PDF|.zip|.ZIP)$/i;
+          if(!allowedExtensions.exec(filePath)){
+
+              swal({
+                  title: "!Tipo de archivo no valido!",
+                  text: "Por favor cargue un archivo PDF/ZIP.",
+                  type: "error",
+                  confirmButtonText: "Aceptar",
+                  confirmButtonColor: "#647396"
+              });
+              fileInput.value = '';
+              return false;
+          }else{
+              if (fileInput.files && fileInput.files[0]) {
+                  var reader = new FileReader();
+                  reader.onload = function(e) { };
+                  reader.readAsDataURL(fileInput.files[0]);
+              }
+          }
+
+
+     });
+</script>
+
+{% endblock %}

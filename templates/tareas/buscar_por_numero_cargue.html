@@ -1,0 +1,56 @@
+{% load static %}
+
+{% if form.errors %}
+    <ul class="alert alert-danger">
+    {% for field in form %}
+        {% for error in field.errors %}
+            <li>
+              {% if field != '__all__' %}
+                <strong>{{ field.label }}:</strong>
+              {% endif %}
+              {{ error }}
+            </li>
+        {% endfor %}
+    {% endfor %}
+    </ul>
+{% endif %}
+
+  <form method="POST" action="{% url 'tareas:verCarguesFiltro' %}">
+    {% csrf_token %}
+
+
+    {# Include the visible fields #}
+    {% for field in form.visible_fields %}
+      {% if not forloop.counter|divisibleby:2 %}
+        <div class="container ctn-input">
+          <div class="row col-md-12">
+      {% endif %}
+
+            <div id="div_{{ field.auto_id }}" class="col-md-6">
+              <div class="row col-md-12">
+                <div class="col-md-6">
+                  <label class="font-Tamaño" for="formGroupExampleInput">
+                    {{ field.errors }}
+                    {{ field.label_tag }}
+                  </label>
+                </div>
+                <div class="col-md-6">
+                  {{ field }}
+                </div>
+              </div>
+            </div>
+
+
+      {% if forloop.counter|divisibleby:2 %}
+          </div>
+        </div> <!--</div class="container ctn-input">-->
+      {% endif %}
+
+
+    {% endfor %}
+
+
+
+     <button class="btn btn-outline-primary my-1" id="buscar1" type="submit">Buscar</button>
+
+  </form>

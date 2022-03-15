@@ -5,5 +5,6 @@ from cliente.views import index_view
 urlpatterns = [
     path("admin/", admin.site.urls),
     path("cliente/", include(("cliente.urls", "cliente"))),
+    path("tareas/", include(("tareas.urls", "tareas"))),
     path("", index_view, name="index"),
 ]

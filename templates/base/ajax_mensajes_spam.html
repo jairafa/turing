@@ -1,0 +1,11 @@
+{% if mensajes %}
+	{% for mensaje in mensajes %}
+		<div id="div_id_mensaje_{{campo}}_{{forloop.counter}}">
+		{% if forloop.counter|divisibleby:2 %}
+			<label style="color:blue;" class="col-form-label">{{mensaje.mensaje1}} <span class="badge badge-success">{{mensaje.mensaje2}}</span> {{mensaje.mensaje3}}</label>
+		{% else %}
+			<label style="color:red;" class="col-form-label">{{mensaje.mensaje1}} <span class="badge badge-success">{{mensaje.mensaje2}}</span> {{mensaje.mensaje3}}</label>
+		{% endif %}
+		</div>
+	{% endfor %}
+{% endif %}

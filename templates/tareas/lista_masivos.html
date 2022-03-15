@@ -1,0 +1,136 @@
+{% extends 'base/base.html' %}
+{% load static%}
+
+{% block contentfluid %}
+<style type="text/css">
+ table {
+    border-collapse: collapse;
+    border-spacing: 2em 1em;
+  }
+  .table {
+  	margin-bottom: -0.9rem!important;
+  }
+
+  .table thead th {
+    vertical-align: bottom;
+    border-bottom: none;
+    padding: 10px;
+    border: 1px solid;
+  }
+  .table td {
+    vertical-align: top;
+    border-top: 1px solid #dee2e6;
+    padding: 15px;
+  }
+  .table-striped>tbody>tr:nth-child(odd)>th, .table-striped>tbody>tr:nth-child(odd)>td {
+    background-color: #dfe6f1;
+    color: #657396;
+  }
+
+    ul{
+      list-style:none
+    }
+    .div_texto_sub {
+	    margin: 0em 3em 0em 0em;
+	    width: 100%;
+	}
+</style>
+
+<center>
+			<div class="d-flex font-weight-bold">
+			<!--	<a href="{ url 'tareas:xlsTareas' }"  class="btn btn-info" target="_blank">
+	                	<ul style="margin: 0;float: left;color: #fff;width:auto;max-width:auto;padding-inline-start: 0px;padding-right: 1em;">
+							<li class="nav-item active">
+								<div class="div_li_ul_a">
+									<i class="fas fa-file-excel" class="i_icono"></i>
+								</div>
+								<div class="div_texto_sub">
+									Exportar Excel
+								</div>
+							</li>
+						</ul>
+					</a>-->
+					 &nbsp;&nbsp;
+					 <a href="javascript:history.go(-1)" class="btn btn-primary btnTimer">
+	                	<ul style="margin: 0;float: left;color: #fff;width:auto;max-width:auto;padding-inline-start: 0px;padding-right: 1em;">
+							<li class="nav-item active">
+								<div class="div_li_ul_a">
+									<i class="fas fa-undo-alt" class="i_icono"></i>
+								</div>
+								<div class="div_texto_sub">
+									Volver
+								</div>
+							</li>
+						</ul>
+					</a>
+			</div>
+      <div class="container d-flex justify-content-center titulo-BuscadorProcesos font-weight-bold" style="display:inline-block !important;max-width: max-content;">
+      		Administrador de Tareas Masivas
+      </div>
+	<hr>
+		{% include "./buscar_por_numero_masivo.html" %}
+	<hr>
+  </center>
+
+<div class="row">
+	<div class="col-md-12 col-sm-12 col-xs-12">
+	{% include "base/pagination.html" %}
+			{% if masivos %}
+					<table class="table table-striped">
+						<!--Encabezo de la tabla-->
+
+						<thead class="table-primary">
+							<tr >
+								<th>No</th>
+								<th>Tarea</th>
+								<th>Fecha</th>
+								<th>Estado</th>
+								<th>Registro</th>
+								<th>Tipo Id</th>
+								<th>Identificador</th>
+								<th>Usuario</th>
+								<th>Resultado</th>
+							</tr>
+						</thead>
+						<tbody>
+				{% for masivo in masivos %}
+							<tr>
+								<td><b>{{masivo.id}}</b></td>
+								<td><b>{{masivo.tarea}}</b></td>
+								<td><b>{{masivo.fecha}}</b></td>
+								<td><b>{{masivo.estado}}</b></td>
+								<td><b>{{masivo.registro}}</b></td>
+								<td><b>{{masivo.tipo_identificador}}</b></td>
+								<td><b>{{masivo.identificador}}</b></td>
+								<td><b>{{masivo.usuario_id}}</b></td>
+								<td><b>{{masivo.resultado}}</b></td>
+							</tr>
+				{% endfor %}
+						</tbody>
+						<!-- Fin Cuerpo  de la tabla-->
+					</table>
+			{% else %}
+				<table class="table table-striped text-center" style="width: 100%;">
+		            <thead>
+		                <tr>
+		                    <th scope="col" colspan="7">
+		                        No hay Actuaciones Procesales
+		                    </th>
+		                </tr>
+		            </thead>
+		        <table>
+			{% endif %}
+	</div>
+</div>
+{% endblock %}
+
+{% block extrajs %}
+	<script type="text/javascript">
+			$("a").click(function() {
+			setTimeout(function(){
+			    $(".contenido_principal").show();
+			    $(".gif_cargando").hide();
+			}, 2000);
+		});
+	</script>
+{% endblock %}

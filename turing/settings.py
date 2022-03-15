@@ -41,6 +41,7 @@ DJANGO_APPS = [
 
 LOCAL_APPS = [
     "cliente",
+    "tareas",
 ]
 
 INSTALLED_APPS = DJANGO_APPS + LOCAL_APPS
@@ -115,10 +116,12 @@ LANGUAGE_CODE = "es-co"
 # TIME_ZONE = "UTC"
 TIME_ZONE = "America/Bogota"
 USE_I18N = True
-# USE_TZ = False --> Se deja en false para que almacene en la bd la hora local real
+# USE_TZ = False --> Para Colombia: Se deja en false para que almacene en la bd la hora local real
 # de igual manera en los template muestre la hora correcta
 USE_TZ = False
 
+
+LOCALE_PATHS = (os.path.join(BASE_DIR, "locale"),)
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.0/howto/static-files/
@@ -126,6 +129,9 @@ USE_TZ = False
 STATIC_URL = "static/"
 STATICFILES_DIRS = (os.path.join(BASE_DIR, "static"),)
 STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles")
+
+# MEDIA_URL = 'media/'
+# MEDIA_ROOT = os.path.join(BASE_DIR,'media')
 
 
 # Default primary key field type
